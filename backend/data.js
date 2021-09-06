@@ -1,0 +1,84 @@
+//create Array of products
+const data = {
+  products: [
+    {
+      _id: "1",
+      name: "GRAVITAK PROMO SERIES VINYL",
+      category: "GRAFITACK SELF-ADHESIVE VINYLS",
+      image: "/images/chromadek_1.png",
+      price: 1500,
+      countInStock: 10,
+      brand: "MAIZEY",
+      rating: 2.5,
+      numReviews: 34,
+      description:
+        "The Grafitack Promo series vinyl is a soft cadmium-free monomeric calendered PVC film.",
+    },
+    {
+      _id: "2",
+      name: "AVERY SIGN MASK LIGHT BLUE",
+      category: "AVERY SELF-ADHESIVE VINYLS",
+      image: "/images/square tubing_2.png",
+      price: 1700,
+      countInStock: 20,
+      brand: "MAIZEY",
+      rating: 4,
+      numReviews: 12,
+      description: "Avery SignMask Light Blue is a self-adhesive masking tape",
+    },
+    {
+      _id: "3",
+      name: "Frontlit PVC",
+      category: "FRONTLIT PVC",
+      image: "/images/chromadek Flat_sheets_3.png",
+      price: 950,
+      countInStock: 0,
+      brand: "DIGITAL PRINT MEDIA",
+      rating: 4.5,
+      numReviews: 9,
+      description:
+        "A pure white, frontlit PVC banner with a 440gr matt face for indoor and outdoor signage.",
+    },
+    {
+      _id: "4",
+      name: "Graphiwrap Vehicle Wrapping System",
+      category: "VEHICLE WRAPPING",
+      image: "/images/Avery_Mono_4.png",
+      price: 3500,
+      countInStock: 17,
+      brand: "DIGITAL PRINT MEDIA",
+      rating: 5,
+      numReviews: 2,
+      description:
+        "The GrafiWrap system is a sandwich made up of a cast vinyl with grey adhesive",
+    },
+    {
+      _id: "5",
+      name: "Avery seven",
+      category: "LAMINATE FILMS",
+      image: "/images/Avery seven_5.png",
+      price: 1800,
+      countInStock: 11,
+      brand: "DIGITAL PRINT MEDIA",
+      rating: 2,
+      numReviews: 32,
+      description:
+        "LAM 3D Polypropylene laminate that gives a 3D visual effect to your digital prints.",
+    },
+    {
+      _id: "6",
+      name: "POLI-FLEX 4015 – WHITE",
+      category: "HEAT TRANSFER FILMS",
+      image: "/images/Avery Dooo_6.png",
+      price: 1500,
+      countInStock: 44,
+      brand: "SIGNAGE SOLUTIONS",
+      rating: 3,
+      numReviews: 0,
+      description:
+        "Poli-Flex 4015 White is a matt printable heat transfer film with a self-adhesive liner",
+    },
+  ],
+};
+
+export default data;

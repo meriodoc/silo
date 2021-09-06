@@ -1,0 +1,26 @@
+{
+  "name": "silo",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "progessive web app SILO",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meriodoc/silo.git"
+  },
+  "author": "Jacques Korb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meriodoc/silo/issues"
+  },
+  "homepage": "https://github.com/meriodoc/silo#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
