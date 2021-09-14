@@ -15,3 +15,30 @@ export const generateToken = (user) => {
     }
   );
 };
+// Middleware to authenticate const [state, dispatch] = useReducer(reducer, initialState, init)
+// Will get the Auth from headers of this request
+// slice: 7th = Bearer xxxxxx ========> Bearer + space ==7 : So then If have the token number xxxxxx
+// Then jwt has to decript the token (SECRET)
+// Third parameter is a callback function
+// decode === information about the user
+// By calling next we pass req.user to the next middleware
+export const isAuth = (req, res, next) => {
+  const authorization = req.headers.authorization;
+  if (authorization) {
+    const token = authorization.slice(7, authorization.length);
+    jwt.verify(
+      token,
+      process.env.JWT_SECRET || "mysecretkey",
+      (err, decode) => {
+        if (err) {
+          res.status(401).send({ message: "Token Invalid" });
+        } else {
+          req.user = decode;
+          next();
+        }
+      }
+    );
+  } else {
+    res.status(401).send({ message: "No Token" });
+  }
+};

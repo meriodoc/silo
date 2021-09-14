@@ -47,4 +47,27 @@ userRouter.post(
   })
 );
 
+userRouter.post(
+  "/register",
+  expressAsyncHandler(async (req, res) => {
+    // Create a new user
+    const user = new User({
+      name: req.body.name,
+      email: req.body.email,
+      // Have to convert password to hashed password
+      password: bcrypt.hashSync(req.body.password, 8),
+    });
+    // Call user dot save - Created a user that was saved and create a new user
+    const createdUser = await user.save();
+    res.send({
+      _id: createdUser._id,
+      name: createdUser.name,
+      email: createdUser.email,
+      isAdmin: createdUser.isAdmin,
+      // JSON webtoken - need to use it to authenticate my request
+      token: generateToken(createdUser),
+    });
+  })
+);
+
 export default userRouter;
