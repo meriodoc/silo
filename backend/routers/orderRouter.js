@@ -47,4 +47,32 @@ orderRouter.get(
   })
 );
 
+// APi for Payments - put= Update the order resource
+// isAuth = only logged in user can make a payment
+orderRouter.put(
+  "/:id/pay",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    // req.params.id is the value that the user enters rigth after / as an id
+    const order = await Order.findById(req.params.id);
+    // Check if order exists or not
+    if (order) {
+      order.isPaid = true;
+      order.paidAt = Date.now();
+      // payment result from paypal
+      order.paymentResult = {
+        id: req.body.id,
+        status: req.body.status,
+        update_time: req.body.update_time,
+        email_address: req.body.email_address,
+      };
+      // After changing the value of order it is time to save it.
+      const updatedOrder = await order.save();
+      res.send({ message: "Order Paid", order: updatedOrder });
+    } else {
+      res.status(404).send({ message: "Order Not Found" });
+    }
+  })
+);
+
 export default orderRouter;
