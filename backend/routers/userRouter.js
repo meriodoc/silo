@@ -3,7 +3,8 @@ import expressAsyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 import data from "../data.js";
 import User from "../models/userModel.js";
-import { generateToken } from "../utils.js";
+import { generateToken, isAuth } from "../utils.js";
+//import { updateUserProfile } from "../../frontend/src/actions/userActions.js";
 
 // to make the code modular - define multiple routes
 const userRouter = express.Router();
@@ -67,6 +68,48 @@ userRouter.post(
       // JSON webtoken - need to use it to authenticate my request
       token: generateToken(createdUser),
     });
+  })
+);
+
+// API for user information - Profile Screen
+userRouter.get(
+  "/:id",
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (user) {
+      res.send(user);
+    } else {
+      res.status(404).send({ message: "User Not Found" });
+    }
+  })
+);
+
+// API for update user info Update - Profile Screen
+userRouter.put(
+  "/profile",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (user) {
+      // Use pipe - user.name -  to guard against empty string - user didn't enter anything- Then use previous name in db
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+      // For password - check if it has been passed
+      if (req.body.password) {
+        // If so then encrypt password - use 8 to generate the auto salt
+        user.password = bcrypt.hashSync(req.body.password, 8);
+      }
+      // Save user info
+      const updatedUser = await user.save();
+      // send userInfo to frontend
+      res.send({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
+        token: generateToken(updatedUser),
+      });
+    }
   })
 );
 

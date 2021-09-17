@@ -5,6 +5,19 @@ import { isAuth } from "../utils.js";
 
 const orderRouter = express.Router();
 
+// Backend API to return orders of current user
+// await = real orders NOT a promise
+orderRouter.get(
+  "/mine",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const orders = await Order.find({ user: req.user._id });
+    //const orders = await Order.find({}).populate("user", "name");
+    res.send(orders);
+  })
+);
+
+// *************************************
 orderRouter.post(
   "/",
   isAuth,

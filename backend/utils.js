@@ -11,7 +11,7 @@ export const generateToken = (user) => {
     // JSON Web token key (Secret)- will encrypt my data and generate a token - Must be stored elsewhere .env file
     process.env.JWT_SECRET || "mysecretkey",
     {
-      expiresIn: "30d",
+      expiresIn: "60d",
     }
   );
 };
@@ -21,7 +21,7 @@ export const generateToken = (user) => {
 // Then jwt has to decript the token (SECRET)
 // Third parameter is a callback function
 // decode === information about the user
-// By calling next we pass req.user to the next middleware
+// By calling next we pass req.user to the next middleware//
 export const isAuth = (req, res, next) => {
   const authorization = req.headers.authorization;
   if (authorization) {
@@ -40,5 +40,13 @@ export const isAuth = (req, res, next) => {
     );
   } else {
     res.status(401).send({ message: "No Token" });
+  }
+};
+// Admin middleware
+export const isAdmin = (req, res, next) => {
+  if (req.user && req.user.isAdmin) {
+    next();
+  } else {
+    res.status(401).send({ message: "invalid Admin token" });
   }
 };
