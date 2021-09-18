@@ -4,14 +4,14 @@ import data from "../data.js";
 import Product from "../models/productModel.js";
 import { isAdmin, isAuth } from "../utils.js";
 
-const productRouter = express.Router();
+let productRouter = express.Router();
 
 // API to send list of products to frontend
 // Slash will be added to end of /api/products in server.js = exactly the  Api that frontend send for us
 productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
-    const products = await Product.find({});
+    let products = await Product.find({});
     res.send(products);
   })
 );
@@ -21,7 +21,7 @@ productRouter.get(
   "/seed",
   expressAsyncHandler(async (req, res) => {
     // await Product.remove({});   To clear database and remove all products
-    const createdProducts = await Product.insertMany(data.products);
+    let createdProducts = await Product.insertMany(data.products);
     res.send({ createdProducts });
   })
 );
@@ -30,7 +30,7 @@ productRouter.get(
 productRouter.get(
   "/:id",
   expressAsyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id);
+    let product = await Product.findById(req.params.id);
     if (product) {
       res.send(product);
     } else {
@@ -46,7 +46,7 @@ productRouter.post(
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
-    const product = new Product({
+    let product = new Product({
       name: "Sample Name" + Date.now(),
       image: "/images/3D_Laminate.PNG",
       price: 0,
@@ -58,7 +58,7 @@ productRouter.post(
       description: "Sample description",
     });
     // Save the product after having created it above
-    const createdProduct = await product.save();
+    let createdProduct = await product.save();
     // Passing the created product to front end
     res.send({ message: "Product Created", product: createdProduct });
   })
@@ -67,12 +67,15 @@ productRouter.post(
 // API for updating-  put - a product
 productRouter.put(
   "/:id",
+  // JK PROBLEM
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
-    const productId = req.params.id;
+    // JK Make let and see
+    let productId = req.params.id;
     // Get product from database
-    const product = await Product.findById(productId);
+    // JK Make let and see
+    let product = await Product.findById(productId);
     // If product exists then fill data from frontend ie, name etc
     if (product) {
       product.name = req.body.name;
@@ -82,11 +85,25 @@ productRouter.put(
       product.brand = req.body.brand;
       product.countInStock = req.body.countInStock;
       product.description = req.body.description;
-      // Save product
-      const updatedProduct = await product.save();
+      //JK Make let and see -  Save product
+      let updatedProduct = await product.save();
       // after updated product - Send this product to frontend
       res.send({ message: "Product Updated", product: updatedProduct });
       // Else - If product does not exits
+    } else {
+      res.status(404).send({ message: "Product Not Found" });
+    }
+  })
+);
+productRouter.delete(
+  "/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    let product = await Product.findById(req.params.id);
+    if (product) {
+      let deleteProduct = await product.remove();
+      res.send({ message: "Product Deleted", product: deleteProduct });
     } else {
       res.status(404).send({ message: "Product Not Found" });
     }
