@@ -5,7 +5,7 @@ const data = {
     {
       name: "Paul",
       email: "admin@1cloudsilo.com",
-      password: bcrypt.hashSync("12345", 8),
+      password: bcrypt.hashSync("1234", 8),
       isAdmin: true,
     },
     {

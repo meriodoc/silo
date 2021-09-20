@@ -1,11 +1,23 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Order from "../models/orderModel.js";
-import { isAuth } from "../utils.js";
+import { isAdmin, isAuth } from "../utils.js";
 
 const orderRouter = express.Router();
+// Order.find({}) = empty = All orders
+orderRouter.get(
+  "/",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    // Get name from collection user
+    // populate in order model gets user field =- ref  = User
+    const orders = await Order.find({}).populate("user", "name");
+    res.send(orders);
+  })
+);
 
-// Backend API to return orders of current user
+// Backend API to return orders of current user = join
 // await = real orders NOT a promise
 orderRouter.get(
   "/mine",
@@ -87,5 +99,43 @@ orderRouter.put(
     }
   })
 );
+// Delete Order API
+orderRouter.delete(
+  "/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    // req.params.id is the value that the user enters rigth after / as an id
+    const order = await Order.findById(req.params.id);
+    // Check if order exists or not
+    if (order) {
+      const deleteOrder = await order.remove();
+      res.send({ message: "Order Deleted", order: deleteOrder });
+    } else {
+      res.status(404).send({ message: "Order Not Found" });
+    }
+  })
+);
+// APi for Delivery - put= Update the order resource
+// isAuth = only logged in user can make a payment
+orderRouter.put(
+  "/:id/deliver",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    // req.params.id is the value that the user enters rigth after / as an id
+    const order = await Order.findById(req.params.id);
+    // Check if order exists or not
+    if (order) {
+      order.isDelivered = true;
+      order.deliveredAt = Date.now();
 
+      // After changing the value of order it is time to save it.
+      const updatedOrder = await order.save();
+      res.send({ message: "Order Delivered", order: updatedOrder });
+    } else {
+      res.status(404).send({ message: "Order Not Found" });
+    }
+  })
+);
 export default orderRouter;

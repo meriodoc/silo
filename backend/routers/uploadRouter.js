@@ -2,9 +2,9 @@ import multer from "multer";
 import express from "express";
 import { isAuth } from "../utils.js";
 
-let uploadRouter = express.Router();
+const uploadRouter = express.Router();
 
-let storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination(req, file, cb) {
     cb(null, "uploads/");
   },
@@ -13,7 +13,7 @@ let storage = multer.diskStorage({
   },
 });
 
-let upload = multer({ storage });
+const upload = multer({ storage });
 
 uploadRouter.post("/", isAuth, upload.single("image"), (req, res) => {
   res.send(`/${req.file.path}`);

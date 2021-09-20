@@ -46,5 +46,6 @@ app.use((err, req, next, res) => {
 const port = process.env.PORT || 5000;
 /* Make server running - listener */
 app.listen(port, () => {
+  //console.log(`Serve at http://127.0.0.1:${port}`);
   console.log(`Serve at http://localhost:${port}`);
 });
