@@ -146,4 +146,32 @@ userRouter.delete(
   })
 );
 
+// API for edit user info
+userRouter.put(
+  "/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (user) {
+      // Use pipe - user.name -  to guard against empty string - user didn't enter anything- Then use previous name in db
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+      user.isSeller = req.body.isSeller || user.isSeller;
+      user.isAdmin = req.body.isAdmin || user.isAdmin;
+
+      // Save user info
+      const updatedUser = await user.save();
+
+      // send userInfo to frontend
+      res.send({
+        message: "User Updated",
+        user: updatedUser,
+      });
+    } else {
+      res.status(404).send({ message: "User Not Found" });
+    }
+  })
+);
+
 export default userRouter;
