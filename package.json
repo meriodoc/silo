@@ -5,7 +5,7 @@
   "description": "silo",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild": "cd frontend && npm install && npm run build",
+    "build": "cd frontend && npm install && npm run build",
     "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
     
   },
