@@ -1,2 +1,2 @@
 hi there
-mongodb+srv://silo:Augu5k0rb@silo.oml0z.mongodb.net/silo?retryWrites=true&w=majority
+mongodb+srv://silo:Augu5k0rb@silo.oml0z.mongodb.net/silotest?retryWrites=true&w=majority
