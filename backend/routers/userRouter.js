@@ -3,7 +3,7 @@ import expressAsyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 import data from "../data.js";
 import User from "../models/userModel.js";
-import { generateToken, isAuth } from "../utils.js";
+import { generateToken, isAdmin, isAuth } from "../utils.js";
 //import { updateUserProfile } from "../../frontend/src/actions/userActions.js";
 
 // to make the code modular - define multiple routes
@@ -113,4 +113,36 @@ userRouter.put(
   })
 );
 
+// API for returning/list users from the users collection Prefix: / = /api/users
+// find({}) = empty object will return all users
+userRouter.get(
+  "/",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const users = await User.find({});
+    res.send(users);
+  })
+);
+
+// API to delete a user //
+userRouter.delete(
+  "/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (user) {
+      if (user.email === "admin@1cloudsilo.com") {
+        res.status(400).send({ message: "CAN NOT DELETE ADMIN USER" });
+        // return won't run next lines
+        return;
+      }
+      const deleteUser = await user.remove();
+      res.send({ message: "User Deleted", user: deleteUser });
+    } else {
+      res.status(404).send({ message: "User Not Found" });
+    }
+  })
+);
 export default userRouter;
