@@ -37,6 +37,7 @@ userRouter.post(
           name: user.name,
           email: user.email,
           isAdmin: user.isAdmin,
+          isSeller: user.isSeller,
           // JSON webtoken - need to use it to authenticate my request
           token: generateToken(user),
         });
@@ -65,6 +66,7 @@ userRouter.post(
       name: createdUser.name,
       email: createdUser.email,
       isAdmin: createdUser.isAdmin,
+      isSeller: user.isSeller,
       // JSON webtoken - need to use it to authenticate my request
       token: generateToken(createdUser),
     });
@@ -94,6 +96,15 @@ userRouter.put(
       // Use pipe - user.name -  to guard against empty string - user didn't enter anything- Then use previous name in db
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
+      if (user.isSeller) {
+        // Check if user.seller.name exists || if not = use the current name = user.seller.name
+        user.seller.name = req.body.sellerName || user.seller.name;
+        // Check if user.seller.logo exists || if not = use the current logo = user.seller.logo
+        user.seller.logo = req.body.sellerLogo || user.seller.logo;
+        // Check if user.seller.description exists || if not = use the current description = user.seller.description
+        user.seller.description =
+          req.body.sellerDescription || user.seller.description;
+      }
       // For password - check if it has been passed
       if (req.body.password) {
         // If so then encrypt password - use 8 to generate the auto salt
@@ -107,6 +118,7 @@ userRouter.put(
         name: updatedUser.name,
         email: updatedUser.email,
         isAdmin: updatedUser.isAdmin,
+        isSeller: user.isSeller,
         token: generateToken(updatedUser),
       });
     }

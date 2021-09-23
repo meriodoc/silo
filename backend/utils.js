@@ -7,6 +7,7 @@ export const generateToken = (user) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
+      isSeller: user.isSeller,
     },
     // JSON Web token key (Secret)- will encrypt my data and generate a token - Must be stored elsewhere .env file
     process.env.JWT_SECRET || "mysecretkey",
@@ -48,5 +49,21 @@ export const isAdmin = (req, res, next) => {
     next();
   } else {
     res.status(401).send({ message: "invalid Admin token" });
+  }
+};
+// Seller middleware
+export const isSeller = (req, res, next) => {
+  if (req.user && req.user.isSeller) {
+    next();
+  } else {
+    res.status(401).send({ message: "invalid Seller token" });
+  }
+};
+// Seller OR Admin middleware
+export const isSellerOrAdmin = (req, res, next) => {
+  if (req.user && (req.user.isSeller || req.user.isAdmin)) {
+    next();
+  } else {
+    res.status(401).send({ message: "Invalid Seller OR Admin token" });
   }
 };

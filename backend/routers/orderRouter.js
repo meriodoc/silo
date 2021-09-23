@@ -1,18 +1,25 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Order from "../models/orderModel.js";
-import { isAdmin, isAuth } from "../utils.js";
+import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
 
 const orderRouter = express.Router();
 // Order.find({}) = empty = All orders
 orderRouter.get(
   "/",
   isAuth,
-  isAdmin,
+  isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
+    // If it does not exist then make the seller to an empty string
+    let seller = req.query.seller || "";
+    // If it seller exists then Filter = seller otherwise empty string
+    let sellerFilter = seller ? { seller } : {};
     // Get name from collection user
     // populate in order model gets user field =- ref  = User
-    const orders = await Order.find({}).populate("user", "name");
+    const orders = await Order.find({ ...sellerFilter }).populate(
+      "user",
+      "name"
+    );
     res.send(orders);
   })
 );
@@ -29,7 +36,6 @@ orderRouter.get(
   })
 );
 
-// *************************************
 orderRouter.post(
   "/",
   isAuth,
@@ -39,6 +45,7 @@ orderRouter.post(
       res.status(400).send({ mesage: "Cart is empty" });
     } else {
       const order = new Order({
+        seller: req.body.orderItems[0].seller,
         orderItems: req.body.orderItems,
         shippingAddress: req.body.shippingAddress,
         paymentMethod: req.body.paymentMethod,

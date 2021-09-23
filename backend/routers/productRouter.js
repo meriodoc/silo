@@ -2,7 +2,7 @@ import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import data from "../data.js";
 import Product from "../models/productModel.js";
-import { isAdmin, isAuth } from "../utils.js";
+import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
 
 let productRouter = express.Router();
 
@@ -11,7 +11,12 @@ let productRouter = express.Router();
 productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
-    let products = await Product.find({});
+    // If it does not exist then make the seller to an empty string
+    let seller = req.query.seller || "";
+    // If it seller exists then Filter = seller otherwise empty string
+    let sellerFilter = seller ? { seller } : {};
+    // ... will decontruct this and put only the field of sellerFilter NOt the object
+    let products = await Product.find({ ...sellerFilter });
     res.send(products);
   })
 );
@@ -44,10 +49,11 @@ productRouter.get(
 productRouter.post(
   "/",
   isAuth,
-  isAdmin,
+  isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
     let product = new Product({
       name: "Sample Name" + Date.now(),
+      seller: req.user._id,
       image: "/images/3D_Laminate.PNG",
       price: 0,
       category: "Sample Category",
@@ -69,7 +75,7 @@ productRouter.put(
   "/:id",
   // JK PROBLEM
   isAuth,
-  isAdmin,
+  isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
     // JK Make let and see
     let productId = req.params.id;
