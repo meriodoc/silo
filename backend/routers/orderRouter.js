@@ -11,9 +11,9 @@ orderRouter.get(
   isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
     // If it does not exist then make the seller to an empty string
-    let seller = req.query.seller || "";
+    const seller = req.query.seller || "";
     // If it seller exists then Filter = seller otherwise empty string
-    let sellerFilter = seller ? { seller } : {};
+    const sellerFilter = seller ? { seller } : {};
     // Get name from collection user
     // populate in order model gets user field =- ref  = User
     const orders = await Order.find({ ...sellerFilter }).populate(
@@ -42,7 +42,7 @@ orderRouter.post(
   expressAsyncHandler(async (req, res) => {
     // Check if order contains order items or not = Validation error
     if (req.body.orderItems.length === 0) {
-      res.status(400).send({ mesage: "Cart is empty" });
+      res.status(400).send({ message: "Cart is empty" });
     } else {
       const order = new Order({
         seller: req.body.orderItems[0].seller,
@@ -86,7 +86,10 @@ orderRouter.put(
   isAuth,
   expressAsyncHandler(async (req, res) => {
     // req.params.id is the value that the user enters rigth after / as an id
-    const order = await Order.findById(req.params.id);
+    const order = await Order.findById(req.params.id).populate(
+      "user",
+      "email name"
+    );
     // Check if order exists or not
     if (order) {
       order.isPaid = true;

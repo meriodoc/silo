@@ -169,8 +169,10 @@ userRouter.put(
       // Use pipe - user.name -  to guard against empty string - user didn't enter anything- Then use previous name in db
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
-      user.isSeller = req.body.isSeller || user.isSeller;
-      user.isAdmin = req.body.isAdmin || user.isAdmin;
+      // user.isSeller = req.body.isSeller || user.isSeller;
+      // user.isAdmin = req.body.isAdmin || user.isAdmin;
+      user.isSeller = Boolean(req.body.isSeller);
+      user.isAdmin = Boolean(req.body.isAdmin);
 
       // Save user info
       const updatedUser = await user.save();

@@ -20,9 +20,9 @@ app.use(express.urlencoded({ extended: true }));
 // mongosh "mongodb+srv://silo.oml0z.mongodb.net/myFirstDatabase" --username meriodoc
 mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/silo", {
   // Use Parser to get rid of depricated warnings
-  // useNewUrlParser: true,
-  // useUnifiedTopology: true,
-  // useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  //useCreateIndex: true,
 });
 // userRouter is the responder to the path
 app.use("/api/uploads", uploadRouter);
@@ -41,14 +41,16 @@ app.get("*", (req, res) =>
 // app.get("/", (req, res) => {
 //   res.send("Server is ready");
 // });
+//let unused = require("unparam");
 
-app.use((err, req, next, res) => {
+app.use((err, req, res, next) => {
+  // unused(next);
   res.status(500).send({ message: err.message });
 });
 
 const port = process.env.PORT || 5000;
 /* Make server running - listener */
 app.listen(port, () => {
-  console.log(`Serve at http://127.0.0.1:${port}`);
-  //console.log(`Serve at http://localhost:${port}`);
+  //console.log(`Serve at http://127.0.0.1:${port}`);
+  console.log(`Serve at http://localhost:${port}`);
 });

@@ -16,7 +16,12 @@ productRouter.get(
     // If it seller exists then Filter = seller otherwise empty string
     let sellerFilter = seller ? { seller } : {};
     // ... will decontruct this and put only the field of sellerFilter NOt the object
-    let products = await Product.find({ ...sellerFilter });
+    // Need to poulate seller object from user collection
+    // 2 params = 1 object to be populated. 2 fields of this object(seller.name) AND seller.logo
+    let products = await Product.find({ ...sellerFilter }).populate(
+      "seller",
+      "seller.name seller.logo"
+    );
     res.send(products);
   })
 );
@@ -35,7 +40,10 @@ productRouter.get(
 productRouter.get(
   "/:id",
   expressAsyncHandler(async (req, res) => {
-    let product = await Product.findById(req.params.id);
+    let product = await Product.findById(req.params.id).populate(
+      "seller",
+      "seller.name seller.logo seller.rating seller.numReviews"
+    );
     if (product) {
       res.send(product);
     } else {
@@ -54,7 +62,7 @@ productRouter.post(
     let product = new Product({
       name: "Sample Name" + Date.now(),
       seller: req.user._id,
-      image: "/images/3D_Laminate.PNG",
+      image: "/images/3D_Laminate.jpg",
       price: 0,
       category: "Sample Category",
       brand: "Sample Brand",
