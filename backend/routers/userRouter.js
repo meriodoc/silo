@@ -9,6 +9,17 @@ import { generateToken, isAdmin, isAuth } from "../utils.js";
 // to make the code modular - define multiple routes
 const userRouter = express.Router();
 
+// APi for top Sellers -1 = descending
+userRouter.get(
+  "/top-sellers",
+  expressAsyncHandler(async (req, res) => {
+    const topSellers = await User.find({ isSeller: true })
+      .sort({ "seller.rating": -1 })
+      .limit(5);
+    res.send(topSellers);
+  })
+);
+
 // Route for seed api - mongoose is async hence  async
 // Create users here
 userRouter.get(
