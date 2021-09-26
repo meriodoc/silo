@@ -2,6 +2,7 @@ import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import data from "../data.js";
 import Product from "../models/productModel.js";
+//import User from '../models/userModel.js';
 import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
 
 const productRouter = express.Router();
@@ -100,7 +101,7 @@ productRouter.put(
       product.countInStock = req.body.countInStock;
       product.description = req.body.description;
       //JK Make let and see -  Save product
-      let updatedProduct = await product.save();
+      const updatedProduct = await product.save();
       // after updated product - Send this product to frontend
       res.send({ message: "Product Updated", product: updatedProduct });
       // Else - If product does not exits

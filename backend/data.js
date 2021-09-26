@@ -23,7 +23,7 @@ const data = {
       //supplier: "Maizey",
       category: "SIGNAGE SOLUTIONS",
       //subCategory: "GRAFITACK SELF-ADHESIVE VINYLS",
-      image: "/images/productImages/GRAVITAK_PROMO_SERIES_VINYL.jpg",
+      image: "/images/productImages/GRAVITAK_PROMO_SERIES_VINYL.png",
       price: 1500,
       countInStock: 10,
       brand: "GRAVITAK",
