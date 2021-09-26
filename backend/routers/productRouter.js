@@ -4,7 +4,7 @@ import data from "../data.js";
 import Product from "../models/productModel.js";
 import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
 
-let productRouter = express.Router();
+const productRouter = express.Router();
 
 // API to send list of products to frontend
 // Slash will be added to end of /api/products in server.js = exactly the  Api that frontend send for us
@@ -12,13 +12,13 @@ productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
     // If it does not exist then make the seller to an empty string
-    let seller = req.query.seller || "";
+    const seller = req.query.seller || "";
     // If it seller exists then Filter = seller otherwise empty string
-    let sellerFilter = seller ? { seller } : {};
+    const sellerFilter = seller ? { seller } : {};
     // ... will decontruct this and put only the field of sellerFilter NOt the object
     // Need to poulate seller object from user collection
     // 2 params = 1 object to be populated. 2 fields of this object(seller.name) AND seller.logo
-    let products = await Product.find({ ...sellerFilter }).populate(
+    const products = await Product.find({ ...sellerFilter }).populate(
       "seller",
       "seller.name seller.logo"
     );
@@ -31,7 +31,7 @@ productRouter.get(
   "/seed",
   expressAsyncHandler(async (req, res) => {
     // await Product.remove({});   To clear database and remove all products
-    let createdProducts = await Product.insertMany(data.products);
+    const createdProducts = await Product.insertMany(data.products);
     res.send({ createdProducts });
   })
 );
@@ -40,7 +40,7 @@ productRouter.get(
 productRouter.get(
   "/:id",
   expressAsyncHandler(async (req, res) => {
-    let product = await Product.findById(req.params.id).populate(
+    const product = await Product.findById(req.params.id).populate(
       "seller",
       "seller.name seller.logo seller.rating seller.numReviews"
     );
@@ -59,7 +59,7 @@ productRouter.post(
   isAuth,
   isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
-    let product = new Product({
+    const product = new Product({
       name: "Sample Name" + Date.now(),
       seller: req.user._id,
       image: "/images/3D_Laminate.jpg",
@@ -72,7 +72,7 @@ productRouter.post(
       description: "Sample description",
     });
     // Save the product after having created it above
-    let createdProduct = await product.save();
+    const createdProduct = await product.save();
     // Passing the created product to front end
     res.send({ message: "Product Created", product: createdProduct });
   })
@@ -86,10 +86,10 @@ productRouter.put(
   isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
     // JK Make let and see
-    let productId = req.params.id;
+    const productId = req.params.id;
     // Get product from database
     // JK Make let and see
-    let product = await Product.findById(productId);
+    const product = await Product.findById(productId);
     // If product exists then fill data from frontend ie, name etc
     if (product) {
       product.name = req.body.name;
@@ -114,9 +114,9 @@ productRouter.delete(
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
-    let product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id);
     if (product) {
-      let deleteProduct = await product.remove();
+      const deleteProduct = await product.remove();
       res.send({ message: "Product Deleted", product: deleteProduct });
     } else {
       res.status(404).send({ message: "Product Not Found" });
