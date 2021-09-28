@@ -12,18 +12,36 @@ const productRouter = express.Router();
 productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
+    // If it does not exist then make the name to an empty string
+    const name = req.query.name || "";
+    // If it does not exist then make the category to an empty string
+    const category = req.query.category || "";
     // If it does not exist then make the seller to an empty string
     const seller = req.query.seller || "";
+    // If it name exists then Filter = name otherwise empty string
+    const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
     // If it seller exists then Filter = seller otherwise empty string
     const sellerFilter = seller ? { seller } : {};
+    // If it category exists then Filter = categoryFilter otherwise empty string
+    const categoryFilter = category ? { category } : {};
     // ... will decontruct this and put only the field of sellerFilter NOt the object
     // Need to poulate seller object from user collection
     // 2 params = 1 object to be populated. 2 fields of this object(seller.name) AND seller.logo
-    const products = await Product.find({ ...sellerFilter }).populate(
-      "seller",
-      "seller.name seller.logo"
-    );
+    const products = await Product.find({
+      ...nameFilter,
+      ...sellerFilter,
+      ...categoryFilter,
+    }).populate("seller", "seller.name seller.logo");
     res.send(products);
+  })
+);
+
+// API for product Categories
+productRouter.get(
+  "/categories",
+  expressAsyncHandler(async (req, res) => {
+    const categories = await Product.find().distinct("category");
+    res.send(categories);
   })
 );
 
@@ -31,7 +49,7 @@ productRouter.get(
 productRouter.get(
   "/seed",
   expressAsyncHandler(async (req, res) => {
-    // await Product.remove({});   To clear database and remove all products
+    //await Product.remove({}); // To clear database and remove all products
     const createdProducts = await Product.insertMany(data.products);
     res.send({ createdProducts });
   })
