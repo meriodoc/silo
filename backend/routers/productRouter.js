@@ -18,12 +18,35 @@ productRouter.get(
     const category = req.query.category || "";
     // If it does not exist then make the seller to an empty string
     const seller = req.query.seller || "";
+    const order = req.query.order || "";
+
+    const min =
+      req.query.min && Number(req.query.min) !== 0 ? Number(req.query.min) : 0;
+    const max =
+      req.query.max && Number(req.query.max) !== 0 ? Number(req.query.max) : 0;
+    const rating =
+      req.query.rating && Number(req.query.rating) !== 0
+        ? Number(req.query.rating)
+        : 0;
+
     // If it name exists then Filter = name otherwise empty string
     const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
     // If it seller exists then Filter = seller otherwise empty string
     const sellerFilter = seller ? { seller } : {};
     // If it category exists then Filter = categoryFilter otherwise empty string
     const categoryFilter = category ? { category } : {};
+
+    const priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
+    const ratingFilter = rating ? { rating: { $gte: rating } } : {};
+    const sortOrder =
+      order === "lowest"
+        ? { price: 1 }
+        : order === "highest"
+        ? { price: -1 }
+        : order === "toprated"
+        ? { rating: -1 }
+        : { _id: -1 }; /* latest == {_id: -1*/
+
     // ... will decontruct this and put only the field of sellerFilter NOt the object
     // Need to poulate seller object from user collection
     // 2 params = 1 object to be populated. 2 fields of this object(seller.name) AND seller.logo
@@ -31,7 +54,12 @@ productRouter.get(
       ...nameFilter,
       ...sellerFilter,
       ...categoryFilter,
-    }).populate("seller", "seller.name seller.logo");
+      ...priceFilter,
+      ...ratingFilter,
+      ...sortOrder,
+    })
+      .populate("seller", "seller.name seller.logo")
+      .sort(sortOrder);
     res.send(products);
   })
 );
