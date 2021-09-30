@@ -7,15 +7,15 @@ import { generateToken, isAdmin, isAuth } from "../utils.js";
 //import { updateUserProfile } from "../../frontend/src/actions/userActions.js";
 
 // to make the code modular - define multiple routes
-const userRouter = express.Router();
+let userRouter = express.Router();
 
 // APi for top Sellers -1 = descending
 userRouter.get(
   "/top-sellers",
   expressAsyncHandler(async (req, res) => {
-    const topSellers = await User.find({ isSeller: true })
+    let topSellers = await User.find({ isSeller: true })
       .sort({ "seller.rating": -1 })
-      .limit(5);
+      .limit(3);
     res.send(topSellers);
   })
 );
@@ -28,7 +28,7 @@ userRouter.get(
     //To remove all users
     //await User.remove({});
     // insertMany inserts an array into the User Collection
-    const createdUsers = await User.insertMany(data.users);
+    let createdUsers = await User.insertMany(data.users);
     // I send back created users
     res.send({ createdUsers });
   })

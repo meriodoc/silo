@@ -2,7 +2,6 @@ import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import data from "../data.js";
 import Product from "../models/productModel.js";
-//import User from '../models/userModel.js';
 import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
 
 const productRouter = express.Router();
@@ -13,32 +12,32 @@ productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
     // If it does not exist then make the name to an empty string
-    const name = req.query.name || "";
+    let name = req.query.name || "";
     // If it does not exist then make the category to an empty string
-    const category = req.query.category || "";
+    let category = req.query.category || "";
     // If it does not exist then make the seller to an empty string
-    const seller = req.query.seller || "";
-    const order = req.query.order || "";
+    let seller = req.query.seller || "";
+    let order = req.query.order || "";
 
-    const min =
+    let min =
       req.query.min && Number(req.query.min) !== 0 ? Number(req.query.min) : 0;
-    const max =
+    let max =
       req.query.max && Number(req.query.max) !== 0 ? Number(req.query.max) : 0;
-    const rating =
+    let rating =
       req.query.rating && Number(req.query.rating) !== 0
         ? Number(req.query.rating)
         : 0;
 
-    // If it name exists then Filter = name otherwise empty string
-    const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
-    // If it seller exists then Filter = seller otherwise empty string
-    const sellerFilter = seller ? { seller } : {};
-    // If it category exists then Filter = categoryFilter otherwise empty string
-    const categoryFilter = category ? { category } : {};
+    // If  name exists then Filter = name otherwise empty string
+    let nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
+    // If  seller exists then Filter = seller otherwise empty string
+    let sellerFilter = seller ? { seller } : {};
+    // If  category exists then Filter = categoryFilter otherwise empty string
+    let categoryFilter = category ? { category } : {};
 
-    const priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
-    const ratingFilter = rating ? { rating: { $gte: rating } } : {};
-    const sortOrder =
+    let priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
+    let ratingFilter = rating ? { rating: { $gte: rating } } : {};
+    let sortOrder =
       order === "lowest"
         ? { price: 1 }
         : order === "highest"
@@ -50,7 +49,7 @@ productRouter.get(
     // ... will decontruct this and put only the field of sellerFilter NOt the object
     // Need to poulate seller object from user collection
     // 2 params = 1 object to be populated. 2 fields of this object(seller.name) AND seller.logo
-    const products = await Product.find({
+    let products = await Product.find({
       ...nameFilter,
       ...sellerFilter,
       ...categoryFilter,
@@ -68,7 +67,7 @@ productRouter.get(
 productRouter.get(
   "/categories",
   expressAsyncHandler(async (req, res) => {
-    const categories = await Product.find().distinct("category");
+    let categories = await Product.find().distinct("category");
     res.send(categories);
   })
 );
@@ -78,7 +77,7 @@ productRouter.get(
   "/seed",
   expressAsyncHandler(async (req, res) => {
     //await Product.remove({}); // To clear database and remove all products
-    const createdProducts = await Product.insertMany(data.products);
+    let createdProducts = await Product.insertMany(data.products);
     res.send({ createdProducts });
   })
 );
@@ -87,7 +86,7 @@ productRouter.get(
 productRouter.get(
   "/:id",
   expressAsyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id).populate(
+    let product = await Product.findById(req.params.id).populate(
       "seller",
       "seller.name seller.logo seller.rating seller.numReviews"
     );
@@ -119,7 +118,7 @@ productRouter.post(
       description: "Sample description",
     });
     // Save the product after having created it above
-    const createdProduct = await product.save();
+    let createdProduct = await product.save();
     // Passing the created product to front end
     res.send({ message: "Product Created", product: createdProduct });
   })
@@ -133,10 +132,10 @@ productRouter.put(
   isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
     // JK Make let and see
-    const productId = req.params.id;
+    let productId = req.params.id;
     // Get product from database
     // JK Make let and see
-    const product = await Product.findById(productId);
+    let product = await Product.findById(productId);
     // If product exists then fill data from frontend ie, name etc
     if (product) {
       product.name = req.body.name;
@@ -147,7 +146,7 @@ productRouter.put(
       product.countInStock = req.body.countInStock;
       product.description = req.body.description;
       //JK Make let and see -  Save product
-      const updatedProduct = await product.save();
+      let updatedProduct = await product.save();
       // after updated product - Send this product to frontend
       res.send({ message: "Product Updated", product: updatedProduct });
       // Else - If product does not exits
