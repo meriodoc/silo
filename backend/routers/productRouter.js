@@ -4,7 +4,7 @@ import data from "../data.js";
 import Product from "../models/productModel.js";
 import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
 
-const productRouter = express.Router();
+let productRouter = express.Router();
 
 // API to send list of products to frontend
 // Slash will be added to end of /api/products in server.js = exactly the  Api that frontend send for us
@@ -50,12 +50,12 @@ productRouter.get(
     // Need to poulate seller object from user collection
     // 2 params = 1 object to be populated. 2 fields of this object(seller.name) AND seller.logo
     let products = await Product.find({
-      ...nameFilter,
       ...sellerFilter,
+      ...nameFilter,
       ...categoryFilter,
       ...priceFilter,
       ...ratingFilter,
-      ...sortOrder,
+      //...sortOrder,
     })
       .populate("seller", "seller.name seller.logo")
       .sort(sortOrder);
@@ -105,7 +105,7 @@ productRouter.post(
   isAuth,
   isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
-    const product = new Product({
+    let product = new Product({
       name: "Sample Name" + Date.now(),
       seller: req.user._id,
       image: "/images/3D_Laminate.jpg",
@@ -160,9 +160,9 @@ productRouter.delete(
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id);
+    let product = await Product.findById(req.params.id);
     if (product) {
-      const deleteProduct = await product.remove();
+      let deleteProduct = await product.remove();
       res.send({ message: "Product Deleted", product: deleteProduct });
     } else {
       res.status(404).send({ message: "Product Not Found" });

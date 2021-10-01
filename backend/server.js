@@ -9,7 +9,7 @@ import uploadRouter from "./routers/uploadRouter.js";
 
 dotenv.config();
 
-const app = express();
+let app = express();
 // Here i need to parse the body of the http request to avoid the error in Postman FOR signin
 // by running this I run new middleware by parsing data in the body of the request to json
 app.use(express.json());
@@ -17,7 +17,7 @@ app.use(express.json());
 //
 app.use(express.urlencoded({ extended: true }));
 
-// mongosh "mongodb+srv://silo.oml0z.mongodb.net/myFirstDatabase" --username meriodoc
+//mongosh "mongodb+srv://silo.oml0z.mongodb.net/myFirstDatabase" --username meriodoc
 mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/silo", {
   // Use Parser to get rid of depricated warnings
   useNewUrlParser: true,
@@ -44,12 +44,10 @@ app.get("*", (req, res) =>
 //let unused = require("unparam");
 
 app.use((err, req, res, next) => {
-  // unused(next);
   res.status(500).send({ message: err.message });
 });
 
 const port = process.env.PORT || 5000;
-/* Make server running - listener */
 app.listen(port, () => {
   //console.log(`Serve at http://127.0.0.1:${port}`);
   console.log(`Serve at http://localhost:${port}`);
