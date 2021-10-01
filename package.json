@@ -2,7 +2,7 @@
   "name": "silo",
   "type": "module",
   "version": "1.0.0",
-  "description": "Silo Ecommerce",
+  "description": "Silo E-commerce",
   "main": "index.js",
   "scripts": {
     "build": "cd frontend && npm install && npm run build",
