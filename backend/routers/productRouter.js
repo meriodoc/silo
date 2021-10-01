@@ -169,4 +169,55 @@ productRouter.delete(
     }
   })
 );
+
+// API to create a review - post= create a resource
+productRouter.post(
+  "/:id/reviews",
+  // JK PROBLEM
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    // JK Make let and see
+    let productId = req.params.id;
+    // Get product from database
+    // JK Make let and see
+    let product = await Product.findById(productId);
+    // If product exists then fill data from frontend ie, name etc
+    if (product) {
+      if (product.reviews.find((x) => x.name === req.user.name)) {
+        return res
+          .status(400)
+          .send({ message: "You have already reviewed this product" });
+      }
+
+      let review = {
+        name: req.user.name,
+        rating: Number(req.body.rating),
+        comment: req.body.comment,
+      };
+      // Add this review to the Reviews Array - Push
+      product.reviews.push(review);
+      // After adding a new review to the product reviews
+      // Update numReviews and Rating
+      product.numReviews = product.reviews.length;
+      // create and calculate the rating
+      // a = accumulator  c = current item 0= default a value     / devived by product.reviews.length
+      product.rating =
+        product.reviews.reduce((a, c) => c.rating + a, 0) /
+        product.reviews.length;
+
+      //JK Make let and see -  Save product
+      let updatedProduct = await product.save();
+
+      // after updated product - Send this product to frontend
+      // latest review is -1
+      res.status(201).send({
+        message: "Review Created",
+        review: updatedProduct.reviews[updatedProduct.reviews.length - 1],
+      });
+      // Else - If product does not exits
+    } else {
+      res.status(404).send({ message: "Product Not Found" });
+    }
+  })
+);
 export default productRouter;
