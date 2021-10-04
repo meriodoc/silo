@@ -12,6 +12,10 @@ let productRouter = express.Router();
 productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
+    // Define PAGINATION: Items per page = pageSize
+    // Can use same logic for orders or users
+    const pageSize = 3;
+    const page = Number(req.query.pageNumber) || 1;
     // If it does not exist then make the name to an empty string
     let name = req.query.name || "";
     // If it does not exist then make the category to an empty string
@@ -47,6 +51,15 @@ productRouter.get(
         ? { rating: -1 }
         : { _id: -1 }; /* latest == {_id: -1*/
 
+    const count = await Product.count({
+      ...sellerFilter,
+      ...nameFilter,
+      ...categoryFilter,
+      ...priceFilter,
+      ...ratingFilter,
+      //...sortOrder,
+    });
+
     // ... will decontruct this and put only the field of sellerFilter NOt the object
     // Need to poulate seller object from user collection
     // 2 params = 1 object to be populated. 2 fields of this object(seller.name) AND seller.logo
@@ -56,11 +69,12 @@ productRouter.get(
       ...categoryFilter,
       ...priceFilter,
       ...ratingFilter,
-      //...sortOrder,
     })
       .populate("seller", "seller.name seller.logo")
-      .sort(sortOrder);
-    res.send(products);
+      .sort(sortOrder)
+      .skip(pageSize * (page - 1))
+      .limit(pageSize);
+    res.send({ products, page, pages: Math.ceil(count / pageSize) });
   })
 );
 
