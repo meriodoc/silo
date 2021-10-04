@@ -3,16 +3,18 @@ import bcrypt from "bcryptjs";
 const data = {
   users: [
     {
-      name: "Paul",
-      email: "admin@1cloudsilo.com",
+      name: "AdminSeller",
+      email: "adminseller@gmail.com",
       password: bcrypt.hashSync("1234", 8),
       isAdmin: true,
-    },
-    {
-      name: "Jacques",
-      email: "dev@1cloudsilo.com",
-      password: bcrypt.hashSync("1234", 8),
-      isAdmin: false,
+      isSeller: true,
+      seller: {
+        name: "SAMPLE NAME 2",
+        logo: "/images/3D_Laminate.jpg",
+        description: "SAMPLE description",
+        rating: "4.5",
+        numReviews: 12,
+      },
     },
   ],
 

@@ -184,7 +184,7 @@ userRouter.put(
       // user.isAdmin = req.body.isAdmin || user.isAdmin;
       user.isSeller = Boolean(req.body.isSeller);
       user.isAdmin = Boolean(req.body.isAdmin);
-
+      // Udate the boolean fields
       // Save user info
       const updatedUser = await user.save();
 
