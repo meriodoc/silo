@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  GoogleMap,
   LoadScript,
-  Marker,
+  GoogleMap,
   StandaloneSearchBox,
+  Marker,
 } from "@react-google-maps/api";
 import LoadingBox from "../components/LoadingBox";
 import Axios from "axios";
 import { USER_ADDRESS_MAP_CONFIRM } from "../constants/userConstants";
 import { useDispatch } from "react-redux";
-import _ from "lodash";
+//import _ from "lodash";
 
 const libs = ["places"];
 const defaultLocation = { lat: -34.029, lng: 24.91 };
@@ -56,7 +56,7 @@ export default function MapScreen(props) {
   const dispatch = useDispatch();
   const onConfirm = () => {
     const places = placeRef.current.getPlaces();
-    if (_.IsEmpty && places && places.length === 1) {
+    if (places && places.length === 1) {
       // dispatch select action
       dispatch({
         type: USER_ADDRESS_MAP_CONFIRM,
