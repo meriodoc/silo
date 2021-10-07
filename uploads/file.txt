@@ -2,3 +2,5 @@ hi there
 //"engines": {"node":"14.7.5", "npm":"7.21.1"}
 
 hi
+heroku config:set MONGODB_URL="mongodb+srv://meriodoc:Augu5k0rb@cluster0.xwo5s.mongodb.net/silo-one?retryWrites=true&w=majority"
+

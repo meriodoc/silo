@@ -19,7 +19,7 @@ app.use(express.json());
 //
 app.use(express.urlencoded({ extended: true }));
 
-//mongosh "mongodb+srv://silo.oml0z.mongodb.net/myFirstDatabase" --username meriodoc
+//mongosh "mongodb+srv://silo.oml0z.mongodb.net/onesilo" --username meriodoc
 mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/silo", {
   // Use Parser to get rid of depricated warnings
   useNewUrlParser: true,
