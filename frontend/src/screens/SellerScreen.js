@@ -38,7 +38,7 @@ export default function SellerScreen(props) {
   return (
     <div className="row top">
       <div className="col-1">
-        {_.isEmpty || loading ? (
+        {_.isEmpty(products) || loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (
           <MessageBox variant="danger">{error}</MessageBox>

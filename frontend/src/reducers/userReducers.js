@@ -142,7 +142,7 @@ export const userUpdateReducer = (state = {}, action) => {
   }
 };
 
-export const userTopSellersListsReducer = (
+export const userTopSellersListReducer = (
   state = { loading: true },
   action
 ) => {

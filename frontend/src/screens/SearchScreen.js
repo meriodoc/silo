@@ -81,7 +81,7 @@ export default function SearchScreen(props) {
           <div className="col-1">
             <h3>DEPARTMENT</h3>
             <div>
-              {_.isEmpty(products) || loadingCategories ? (
+              {_.isEmpty(categories) || loadingCategories ? (
                 <LoadingBox></LoadingBox>
               ) : errorCategories ? (
                 <MessageBox variant="danger">{errorCategories}</MessageBox>
@@ -143,7 +143,7 @@ export default function SearchScreen(props) {
           </div>
         </div>
         <div className="col-3">
-          {_.isEmpty(products) || loading ? (
+          {_.isEmpty(ratings) || loading ? (
             <LoadingBox></LoadingBox>
           ) : error ? (
             <MessageBox variant="danger">{error}</MessageBox>
