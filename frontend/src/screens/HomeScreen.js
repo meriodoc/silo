@@ -61,7 +61,7 @@ export default function HomeScreen() {
         </>
       )}
       <h2> Featured Products</h2>
-      {(_.isEmpty(products) && _.isEmpty(sellers)) || loading ? (
+      {_.isEmpty(products) || loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>

@@ -64,7 +64,7 @@ export default function SearchScreen(props) {
           <div>{products.length} RESULTS</div>
         )}
         <div>
-          SORT BY{" "}
+          SORT BY {""}
           <select
             value={order}
             onChange={(e) => {
@@ -81,7 +81,7 @@ export default function SearchScreen(props) {
           <div className="col-1">
             <h3>DEPARTMENT</h3>
             <div>
-              {_.isEmpty(categories) || loadingCategories ? (
+              {_.isEmpty(products) || loadingCategories ? (
                 <LoadingBox></LoadingBox>
               ) : errorCategories ? (
                 <MessageBox variant="danger">{errorCategories}</MessageBox>
@@ -143,11 +143,12 @@ export default function SearchScreen(props) {
           </div>
         </div>
         <div className="col-3">
-          {_.isEmpty(ratings) || loading ? (
+          {_.isEmpty(products) || loading ? (
             <LoadingBox></LoadingBox>
           ) : error ? (
             <MessageBox variant="danger">{error}</MessageBox>
           ) : (
+            /* <div>{products.length} Results</div> */
             <>
               {products.length === 0 && (
                 <MessageBox>No Product Found</MessageBox>
