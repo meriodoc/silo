@@ -93,7 +93,7 @@ export default function SupportScreen() {
   const submitHandler = (e) => {
     e.preventDefault();
     if (!messageBody.trim()) {
-      alert("Error. Please type message");
+      alert("Error. Please type message.");
     } else {
       allMessages = [
         ...allMessages,

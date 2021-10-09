@@ -17,6 +17,7 @@ export default function ChatBox(props) {
   const [messages, setMessages] = useState([
     { name: "Admin", body: "How can we help you?" },
   ]);
+
   useEffect(() => {
     if (uiMessagesRef.current) {
       uiMessagesRef.current.scrollBy({
@@ -39,6 +40,7 @@ export default function ChatBox(props) {
 
   const supportHandler = () => {
     setIsOpen(true);
+    console.log(ENDPOINT);
     const sk = socketIOClient(ENDPOINT);
     setSocket(sk);
   };

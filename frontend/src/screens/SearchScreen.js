@@ -64,7 +64,7 @@ export default function SearchScreen(props) {
           <div>{products.length} RESULTS</div>
         )}
         <div>
-          SORT BY {""}
+          SORT BY{" "}
           <select
             value={order}
             onChange={(e) => {
@@ -148,7 +148,6 @@ export default function SearchScreen(props) {
           ) : error ? (
             <MessageBox variant="danger">{error}</MessageBox>
           ) : (
-            /* <div>{products.length} Results</div> */
             <>
               {products.length === 0 && (
                 <MessageBox>No Product Found</MessageBox>

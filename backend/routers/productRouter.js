@@ -175,7 +175,7 @@ productRouter.put(
       let updatedProduct = await product.save();
       // after updated product - Send this product to frontend
       res.send({ message: "Product Updated", product: updatedProduct });
-      // Else - If product does not exits
+      // Else - If product does not exists
     } else {
       res.status(404).send({ message: "Product Not Found" });
     }
@@ -240,7 +240,7 @@ productRouter.post(
         message: "Review Created",
         review: updatedProduct.reviews[updatedProduct.reviews.length - 1],
       });
-      // Else - If product does not exits
+      // Else - If product does not exists
     } else {
       res.status(404).send({ message: "Product Not Found" });
     }

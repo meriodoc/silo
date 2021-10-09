@@ -122,6 +122,7 @@ io.on("connection", (socket) => {
     }
   });
 });
+// create an http server
 httpServer.listen(port, () => {
   console.log(`Serve at http://localhost:${port}`);
 });
