@@ -142,7 +142,10 @@ export const userUpdateReducer = (state = {}, action) => {
   }
 };
 
-export const userTopSellerListReducer = (state = { loading: true }, action) => {
+export const userTopSellersListsReducer = (
+  state = { loading: true },
+  action
+) => {
   switch (action.type) {
     case USER_TOPSELLERS_LIST_REQUEST:
       /* If it is the case - set loading to true */
