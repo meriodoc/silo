@@ -28,7 +28,7 @@ body {
   /*Setting Rows and columns fragments*/
   grid-template-columns: 1fr;
   /* header - rest of screen - footer sizes */
-  grid-template-rows: 5rem 1fr 5rem;
+  grid-template-rows: 7rem 1fr 3rem;
   height: 100%;
 }
 /*Connecting these to the header template*/

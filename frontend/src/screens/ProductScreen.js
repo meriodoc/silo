@@ -60,7 +60,9 @@ export default function ProductScreen(props) {
       ) : (
         <div>
           <div className="nav-arrow">
-            <Link to="/">GO BACK</Link>
+            <Link to="/">
+              {<img src="/images/icons/arwleftblue.png" alt=""></img>}
+            </Link>
           </div>
           <div className="row top">
             <div className="col-2">
@@ -166,7 +168,7 @@ export default function ProductScreen(props) {
                 <li key={review._id}>
                   <strong>{review.name}</strong>
                   <Rating rating={review.rating} caption=" "></Rating>
-                  <p>{review.createdAt.subString(0, 10)}</p>
+                  <p>{review.createdAt.substring(0, 10)}</p>
                   <p>{review.comment}</p>
                 </li>
               ))}
