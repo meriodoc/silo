@@ -28,7 +28,7 @@ body {
   /*Setting Rows and columns fragments*/
   grid-template-columns: 1fr;
   /* header - rest of screen - footer sizes */
-  grid-template-rows: 7rem 1fr 3rem;
+  grid-template-rows: 6rem 1fr 4rem;
   height: 100%;
 }
 /*Connecting these to the header template*/
@@ -93,9 +93,11 @@ input,
 select,
 textarea,
 button {
+  color: #0078d7;
   padding: 1rem;
   border-radius: 0.5rem;
   border: 0.1rem #c9acac solid;
+  border-color: #0078d7;
   font-size: 1.6rem;
   font-family: Helvetica, Arial, sans-serif;
   /* Moet Consolas font laai om te kan gebruik*/
@@ -116,6 +118,12 @@ button:hover {
 button.primary {
   background-color: #0078d7;
   color: #ffffff;
+}
+button.primary-small {
+  background-color: #0078d7;
+  color: #ffffff;
+  width: 20%;
+  margin: auto;
 }
 button.block {
   width: 100%;
@@ -273,6 +281,7 @@ img.logo {
 .price {
   font-size: 2rem;
   color: #0078d7;
+  font-weight: bold;
 }
 
 /* Rating -all spans inside rating*/
@@ -301,8 +310,8 @@ img.logo {
   border-radius: 0.5rem;
 }
 .alert-info {
-  color: #2020a0;
-  background-color: #e0e0ff;
+  color: white;
+  background-color: #0078d7;
 }
 .alert-danger {
   color: #a02020;
@@ -316,6 +325,7 @@ img.logo {
 /* Form Section */
 
 .form {
+  color: #0078d7;
   max-width: 60rem;
   margin: 0 auto;
 }
@@ -326,6 +336,9 @@ img.logo {
   margin: 1rem;
 }
 .form label {
+  color: #0078d7;
+  font: bold;
+  font-weight: bolder;
   /* 1 = vertically 0 for Horizontally*/
   margin: 1rem;
   /* So I can put labels in new line */
@@ -497,16 +510,20 @@ img.logo {
   bottom: 1rem;
 }
 .chatbox ul {
+  color: #0078d7;
   overflow: scroll;
   max-height: 20rem;
 }
 .chatbox li {
+  color: #0078d7;
   margin-bottom: 1rem;
 }
 .chatbox input {
+  color: #0078d7;
   width: calc(100% - 9rem);
 }
 .support-users {
+  color: #0078d7;
   background-color: #f0f0f0;
   height: 100%;
 }
@@ -516,6 +533,7 @@ img.logo {
   text-align: left;
 }
 .support-users li {
+  color: #0078d7;
   margin: 0;
   background-color: #f0f0f0;
   border: none;
@@ -558,4 +576,19 @@ img.logo {
 }
 .support-users .unread {
   background-color: #f02020;
+}
+/* Arrows margin: auto;   */
+.arrow-left {
+  width: 4%;
+  margin: Left;
+}
+
+.bold-blue {
+  font-weight: bold;
+  color: #0078d7;
+}
+
+.descript {
+  color: #0078d7;
+  font-size: 1.3rem;
 }

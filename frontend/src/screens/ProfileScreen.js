@@ -4,6 +4,7 @@ import { detailsUser, updateUserProfile } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
+import { Link } from "react-router-dom";
 
 export default function ProfileScreen() {
   const [name, setName] = useState("");
@@ -64,6 +65,17 @@ export default function ProfileScreen() {
   };
   return (
     <div>
+      <div>
+        <Link to="/">
+          {
+            <img
+              className="arrow-left"
+              src="/images/icons/arwleftblue.png"
+              alt="back arrow"
+            ></img>
+          }
+        </Link>
+      </div>
       <form className="form" onSubmit={submitHandler}>
         <div>
           <h1>USER PROFILE</h1>
@@ -79,12 +91,10 @@ export default function ProfileScreen() {
               <MessageBox variant="danger">{errorUpdate}</MessageBox>
             )}
             {successUpdate && (
-              <MessageBox variant="success">
-                Profile Updated Successfully
-              </MessageBox>
+              <MessageBox variant="success">PROFILE UPDATED!</MessageBox>
             )}
             <div>
-              <label html="name">Name</label>
+              <label html="name">NAME</label>
               <input
                 id="name"
                 type="text"
@@ -94,7 +104,7 @@ export default function ProfileScreen() {
               ></input>
             </div>
             <div>
-              <label html="email">Email</label>
+              <label html="email">EMAIL</label>
               <input
                 id="email"
                 type="email"
@@ -104,7 +114,7 @@ export default function ProfileScreen() {
               ></input>
             </div>
             <div>
-              <label html="password">Password</label>
+              <label html="password">PASSWORD</label>
               <input
                 id="password"
                 type="password"
@@ -113,7 +123,7 @@ export default function ProfileScreen() {
               ></input>
             </div>
             <div>
-              <label html="confirmPassword"> Confirm Password</label>
+              <label html="confirmPassword"> CONFIRM PASSWORD</label>
               <input
                 id="confirmPassword"
                 type="password"
@@ -125,7 +135,7 @@ export default function ProfileScreen() {
               <>
                 <h2>SELLER</h2>
                 <div>
-                  <label htmlFor="sellerName">Seller Name</label>
+                  <label htmlFor="sellerName">SELLER NAME</label>
                   <input
                     id="sellerName"
                     type="text"
@@ -135,7 +145,7 @@ export default function ProfileScreen() {
                   ></input>
                 </div>
                 <div>
-                  <label htmlFor="sellerLogo">Seller Logo</label>
+                  <label htmlFor="sellerLogo">SELLER LOGO IMAGE</label>
                   <input
                     id="sellerLogo"
                     type="text"
@@ -145,7 +155,7 @@ export default function ProfileScreen() {
                   ></input>
                 </div>
                 <div>
-                  <label htmlFor="sellerDescription">Seller Description</label>
+                  <label htmlFor="sellerDescription">SELLER DESCRIPTION</label>
                   <input
                     id="sellerDescription"
                     type="text"
@@ -158,8 +168,8 @@ export default function ProfileScreen() {
             )}
             <div>
               <label />
-              <button className="primary" type="submit">
-                Update
+              <button className="primary-small" type="submit">
+                <strong>UPDATE</strong>
               </button>
             </div>
           </>
