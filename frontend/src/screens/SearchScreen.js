@@ -5,9 +5,9 @@ import { listProducts } from "../actions/productActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Product from "../components/Product";
-import _ from "lodash";
-import { prices, ratings } from "../utils";
 import Rating from "../components/Rating";
+import { prices, ratings } from "../utils";
+import _ from "lodash";
 
 export default function SearchScreen(props) {
   let {
@@ -92,7 +92,7 @@ export default function SearchScreen(props) {
           <div className="col-1">
             <h3>DEPARTMENT</h3>
             <div>
-              {_.isEmpty(products) || loadingCategories ? (
+              {_.isEmpty(categories) || loadingCategories ? (
                 <LoadingBox></LoadingBox>
               ) : errorCategories ? (
                 <MessageBox variant="danger">{errorCategories}</MessageBox>

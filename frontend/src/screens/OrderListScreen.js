@@ -81,14 +81,14 @@ export default function OrderListScreen(props) {
                         props.history.push(`/order/${order._id}`);
                       }}
                     >
-                      Details
+                      DETAILS
                     </button>
                     <button
                       type="button"
                       className="small"
                       onClick={() => deleteHandler(order)}
                     >
-                      Delete
+                      DELETE
                     </button>
                   </td>
                 </tr>

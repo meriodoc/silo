@@ -50,7 +50,6 @@ export default function ProductScreen(props) {
       alert("PLEASE RATE THIS PRODUCT AND COMMENT");
     }
   };
-  // {_.isEmpty(product, loading) ? (
   return (
     <div>
       {_.isEmpty(product) || loading ? (
@@ -71,19 +70,20 @@ export default function ProductScreen(props) {
             </Link>
           </div>
           <div className="row top">
-            <div className="col-2">
+            <div className="card  col-2 ImageCentreLarge ">
               <img
-                className="medium"
+                className="medium ImageCentreLarge"
                 src={product.image}
                 alt={product.name}
               ></img>
             </div>
-            <div className="col-1">
+
+            <div className="col-1  card card-body">
               <ul>
                 <li>
                   <h1>{product.name}</h1>
                 </li>
-                <li>
+                <li className="descript">
                   <Rating
                     rating={product.rating}
                     numReviews={product.numReviews}
@@ -96,6 +96,7 @@ export default function ProductScreen(props) {
                 </li>
               </ul>
             </div>
+
             <div className="col-1">
               <div className="card card-body">
                 <ul>
@@ -153,7 +154,7 @@ export default function ProductScreen(props) {
                       <li>
                         <button
                           onClick={addToCartHandler}
-                          className="primary block"
+                          className="primary-small"
                         >
                           ADD TO CART
                         </button>
@@ -164,25 +165,29 @@ export default function ProductScreen(props) {
               </div>
             </div>
           </div>
-          <div>
-            <h2 id="reviews">RATINGS REVIEWS</h2>
+          <div className="card card-body">
+            <h2 id="reviews">RATINGS / REVIEWS</h2>
             {product.reviews.length === 0 && (
-              <MessageBox>No Reviews</MessageBox>
+              <MessageBox>NO REVIEWS!</MessageBox>
             )}
-            <ul>
+            <ul className="bold-blue">
               {product.reviews.map((review) => (
-                <li key={review._id}>
-                  <strong>{review.name}</strong>
-                  <Rating rating={review.rating} caption=" "></Rating>
-                  <p>{review.createdAt.substring(0, 10)}</p>
-                  <p>{review.comment}</p>
-                </li>
+                <div>
+                  <li key={review._id}>
+                    <strong>{review.name}</strong>
+                    <Rating rating={review.rating} caption=" "></Rating>
+                    <p>{review.createdAt.substring(0, 10)}</p>
+                    <p>{review.comment}</p>
+                  </li>
+                </div>
               ))}
-              <li>
+              <li className="card card-body">
                 {_.isEmpty && userInfo ? (
                   <form className="form" onSubmit={submitHandler}>
                     <div>
-                      <h2>REVIEW PRODUCT</h2>
+                      <h2 className="headingCentreLarge">
+                        <strong>REVIEW PRODUCT</strong>
+                      </h2>
                     </div>
                     <div>
                       <label htmlFor="rating">RATING</label>
