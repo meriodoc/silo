@@ -125,7 +125,7 @@ export default function SupportScreen() {
       <div className="row top full-container card card-body">
         <div className="col-1 support-users card card-body ">
           {users.filter((x) => x._id !== userInfo._id).length === 0 && (
-            <MessageBox>No online users found</MessageBox>
+            <MessageBox>NO ONLINE USERS FOUND</MessageBox>
           )}
           <ul>
             {users
@@ -158,16 +158,16 @@ export default function SupportScreen() {
           </ul>
         </div>
 
-        <div className="col-3 support-messages card card-body">
+        <div className="col-3 support-messages card card-body content-admin">
           {!selectedUser._id ? (
-            <MessageBox>Select a user to start a chat</MessageBox>
+            <MessageBox>SELECT A USER TO START THE CHAT</MessageBox>
           ) : (
             <div>
-              <div className="row">
-                <strong>Chat with {selectedUser.name}</strong>
+              <div className="row content-admin">
+                <strong>CHAT WITH - {selectedUser.name}</strong>
               </div>
               <ul ref={uiMessagesRef}>
-                {messages.length === 0 && <li>No message.</li>}
+                {messages.length === 0 && <li>NO MESSAGE.</li>}
                 {messages.map((msg, index) => (
                   <li key={index}>
                     <strong>{`${msg.name}: `}</strong> {msg.body}
@@ -175,12 +175,13 @@ export default function SupportScreen() {
                 ))}
               </ul>
               <div>
-                <form onSubmit={submitHandler} className="row">
+                <form onSubmit={submitHandler} className="row content-admin">
                   <input
+                    className="content-admin"
                     value={messageBody}
                     onChange={(e) => setMessageBody(e.target.value)}
                     type="text"
-                    placeholder="type message"
+                    placeholder="type message here"
                   />
                   <button className="small2" type="submit">
                     SEND
