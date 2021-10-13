@@ -33,8 +33,10 @@ export default function ProductScreen(props) {
       window.alert("REVIEW SUBMITTED!");
       setRating("");
       setComment("");
-      dispatch({ type: PRODUCT_REVIEW_CREATE_RESET });
+      //dispatch({ type: PRODUCT_REVIEW_CREATE_RESET });
+      // This outside the claus clears the message when rating more than once
     }
+    dispatch({ type: PRODUCT_REVIEW_CREATE_RESET });
     dispatch(detailsProduct(productId));
   }, [dispatch, productId, successReviewCreate]);
   const addToCartHandler = () => {

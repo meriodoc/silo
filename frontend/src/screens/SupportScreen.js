@@ -122,8 +122,8 @@ export default function SupportScreen() {
       </div>
       <>&nbsp;</>
 
-      <div className="row top full-container">
-        <div className="col-1 support-users">
+      <div className="row top full-container card card-body">
+        <div className="col-1 support-users card card-body ">
           {users.filter((x) => x._id !== userInfo._id).length === 0 && (
             <MessageBox>No online users found</MessageBox>
           )}
@@ -157,8 +157,8 @@ export default function SupportScreen() {
               ))}
           </ul>
         </div>
-        <>&nbsp;</>
-        <div className="col-3 support-messages">
+
+        <div className="col-3 support-messages card card-body">
           {!selectedUser._id ? (
             <MessageBox>Select a user to start a chat</MessageBox>
           ) : (
@@ -182,7 +182,9 @@ export default function SupportScreen() {
                     type="text"
                     placeholder="type message"
                   />
-                  <button type="submit">SEND</button>
+                  <button className="small2" type="submit">
+                    SEND
+                  </button>
                 </form>
               </div>
             </div>

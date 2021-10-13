@@ -396,9 +396,9 @@ img.logo {
 
 .table td,
 .table th {
-  text-align: left;
+  text-align: center;
   border: 0.1 rem solid #e4e4e4;
-  padding: 00.5rem;
+  padding: 0.8rem;
 }
 .table button {
   margin: 0 0.2rem;
@@ -510,7 +510,7 @@ img.logo {
   color: #0078d7;
   position: fixed;
   right: 1rem;
-  bottom: 1rem;
+  bottom: 0.01rem;
 }
 .chatbox ul {
   color: #0078d7;
@@ -605,4 +605,20 @@ img.logo {
   background-color: #0078d7;
   vertical-align: middle;
   padding: 0.5rem;
+}
+button.small2 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  background-color: #0078d7;
+  width: flex;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.tr-pad {
+  padding: 1rem;
+  border-spacing: 5rem;
+}
+.table2 {
+  width: 100%;
+  border-collapse: collapse;
 }

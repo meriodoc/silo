@@ -69,7 +69,7 @@ export default function MapScreen(props) {
           googleAddressId: places[0].id,
         },
       });
-      alert("location selected successfully");
+      alert("Location selected successfully");
       props.history.push("/shipping");
     } else {
       alert("Please enter your address");
