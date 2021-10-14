@@ -115,11 +115,6 @@ export default function SupportScreen() {
 
   return (
     <div>
-      <div>
-        <Link to="/">
-          {<img src="/images/icons/arwleftblue.png" alt="back arrow"></img>}
-        </Link>
-      </div>
       <>&nbsp;</>
 
       <div className="row top full-container card card-body">

@@ -65,17 +65,6 @@ export default function ProfileScreen() {
   };
   return (
     <div>
-      <div>
-        <Link to="/">
-          {
-            <img
-              className="arrow-left"
-              src="/images/icons/arwleftblue.png"
-              alt="back arrow"
-            ></img>
-          }
-        </Link>
-      </div>
       <form className="form" onSubmit={submitHandler}>
         <div>
           <h1>USER PROFILE</h1>

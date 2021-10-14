@@ -149,6 +149,7 @@ function App() {
             )}
           </div>
         </header>
+
         <aside className={sidebarIsOpen ? "open" : ""}>
           <ul className="categories">
             <li>
@@ -179,7 +180,31 @@ function App() {
             )}
           </ul>
         </aside>
+
         <main>
+          <div className="col-1 card card-body ">
+            <div>
+              <Link to="/">
+                {
+                  <img
+                    className="arrow-left"
+                    src="/images/icons/arwleftblue.png"
+                    alt="back arrow"
+                  ></img>
+                }
+              </Link>
+              &nbsp;
+              <Link to="/">
+                {
+                  <img
+                    className="arrow-left"
+                    src="/images/icons/arwleftblue.png"
+                    alt="back arrow"
+                  ></img>
+                }
+              </Link>
+            </div>
+          </div>
           <Route path="/seller/:id" component={SellerScreen}></Route>
           <Route path="/cart/:id?" component={CartScreen}></Route>
           <Route path="/product/:id" component={ProductScreen} exact></Route>

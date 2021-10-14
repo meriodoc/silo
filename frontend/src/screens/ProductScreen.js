@@ -60,17 +60,6 @@ export default function ProductScreen(props) {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div>
-          <div className="nav-arrow">
-            <Link to="/">
-              {
-                <img
-                  className="arrow-left"
-                  src="/images/icons/arwleftblue.png"
-                  alt="back arrow"
-                ></img>
-              }
-            </Link>
-          </div>
           <div className="row top">
             <div className="card  col-2 ImageCentreLarge ">
               <img

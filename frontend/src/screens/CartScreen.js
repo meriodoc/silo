@@ -29,15 +29,6 @@ export default function CartScreen(props) {
   return (
     <div className="row top">
       <div className="col-2">
-        <Link to="/">
-          {
-            <img
-              className="arrow-left"
-              src="/images/icons/arwleftblue.png"
-              alt="back arrow"
-            ></img>
-          }
-        </Link>
         {error && <MessageBox variant="danger">{error}</MessageBox>}
         {error && <MessageBox variant="danger">{error}</MessageBox>}
         {cartItems.length === 0 ? (
