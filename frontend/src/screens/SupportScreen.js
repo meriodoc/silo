@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
 import { useSelector } from "react-redux";
 import MessageBox from "../components/MessageBox";
-import { Link } from "react-router-dom";
 
 let allUsers = [];
 let allMessages = [];

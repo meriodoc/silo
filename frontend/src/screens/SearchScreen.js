@@ -55,17 +55,6 @@ export default function SearchScreen(props) {
   };
   return (
     <div>
-      <div>
-        <Link to="/">
-          {
-            <img
-              className="arrow-left"
-              src="/images/icons/arwleftblue.png"
-              alt="back arrow"
-            ></img>
-          }
-        </Link>
-      </div>
       <div className="row">
         {_.isEmpty(products) || loading ? (
           <LoadingBox></LoadingBox>
