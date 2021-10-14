@@ -161,6 +161,15 @@ orderRouter.put(
       };
       // After changing the value of order it is time to save it.
       const updatedOrder = await order.save();
+      // Update count in stock
+      for (const index in updatedOrder.orderItems) {
+        const item = updatedOrder.orderItems[index];
+        const product = await Product.findById(item.product);
+        product.countInStock -= item.qty;
+        product.sold += item.qty;
+        await product.save();
+      }
+
       // Send an email to the user Mailgun: messages is is function from mailgun-js
       mailgun()
         .messages()

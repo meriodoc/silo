@@ -32,6 +32,14 @@ import MapScreen from "./screens/MapScreen";
 import DashboardScreen from "./screens/DashboardScreen";
 import SupportScreen from "./screens/SupportScreen";
 import ChatBox from "./components/ChatBox";
+//import Whirligig from "react-whirligig";
+
+// Trying
+//const Slider = () => {
+// let whirligig;
+// const next = () => whirligig.next();
+// const prev = () => whirligig.prev();
+//};
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -43,16 +51,19 @@ function App() {
   const signoutHandler = () => {
     dispatch(signout());
   };
+
   let productCategoryList = useSelector((state) => state.productCategoryList);
   let {
     loading: loadingCategories,
     error: errorCategories,
     categories,
   } = productCategoryList;
+
   // categories
   useEffect(() => {
     dispatch(listProductCategories());
   }, [dispatch]);
+
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -187,13 +198,56 @@ function App() {
               <Link to="/">
                 {
                   <img
-                    className="arrow-left"
-                    src="/images/icons/arwleftblue.png"
-                    alt="back arrow"
+                    className="second-menu"
+                    src="/images/icons/pos-inactive.png"
+                    alt="second menu"
                   ></img>
                 }
               </Link>
               &nbsp;
+              <Link to="/">
+                {
+                  <img
+                    className="second-menu"
+                    src="/images/icons/sendAndReceive.png"
+                    alt="second menu"
+                  ></img>
+                }
+              </Link>
+              &nbsp;
+              <Link to="/">
+                {
+                  <img
+                    className="second-menu"
+                    src="/images/icons/myMessages.png"
+                    alt="second menu"
+                  ></img>
+                }
+              </Link>
+              &nbsp;
+              <Link to="/orderhistory">
+                {
+                  <img
+                    className="second-menu"
+                    src="/images/icons/myOrders.png"
+                    alt="second menu"
+                  ></img>
+                }
+              </Link>
+              &nbsp;
+              <Link to="/">
+                {
+                  <img
+                    className="second-menu"
+                    src="/images/icons/mySuppliers.png"
+                    alt="second menu"
+                  ></img>
+                }
+              </Link>
+            </div>
+          </div>
+          <div className="col-1 card card-body ">
+            <div>
               <Link to="/">
                 {
                   <img
