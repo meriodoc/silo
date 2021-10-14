@@ -46,7 +46,7 @@ export default function HomeScreen() {
       ) : errorSellers ? (
         <MessageBox variant="danger">{errorSellers}</MessageBox>
       ) : (
-        <>
+        <div>
           {sellers.length === 0 && <MessageBox>No Seller Found</MessageBox>}
           <Carousel showArrows autoPlay showThumbs={false}>
             {sellers.map((seller) => (
@@ -58,7 +58,7 @@ export default function HomeScreen() {
               </div>
             ))}
           </Carousel>
-        </>
+        </div>
       )}
       <h2> Featured Products</h2>
       {_.isEmpty(products) || loading ? (
@@ -66,14 +66,14 @@ export default function HomeScreen() {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <>
+        <div>
           {products.length === 0 && <MessageBox>No Products Found</MessageBox>}
           <div className="row center">
             {products.map((product) => (
               <Product key={product._id} product={product}></Product>
             ))}
           </div>
-        </>
+        </div>
       )}
     </div>
   );

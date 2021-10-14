@@ -14,7 +14,7 @@ export const generateToken = (user) => {
     // JSON Web token key (Secret)- will encrypt my data and generate a token - Must be stored elsewhere .env file
     process.env.JWT_SECRET || "mysecretkey",
     {
-      expiresIn: "30d",
+      expiresIn: "1000d",
     }
   );
 };
