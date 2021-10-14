@@ -73,7 +73,7 @@ export default function ChatBox(props) {
         </button>
       ) : (
         <div className="card card-body">
-          <div className="row headingCentreLarge">
+          <div className="row image-center-large">
             <strong>SUPPORT</strong>
             <button type="button" onClick={closeHandler}>
               <i className="fa fa-close" />

@@ -114,8 +114,6 @@ export default function SupportScreen() {
 
   return (
     <div>
-      <>&nbsp;</>
-
       <div className="row top full-container card card-body">
         <div className="col-1 support-users card card-body ">
           {users.filter((x) => x._id !== userInfo._id).length === 0 && (

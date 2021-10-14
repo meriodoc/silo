@@ -32,14 +32,6 @@ import MapScreen from "./screens/MapScreen";
 import DashboardScreen from "./screens/DashboardScreen";
 import SupportScreen from "./screens/SupportScreen";
 import ChatBox from "./components/ChatBox";
-//import Whirligig from "react-whirligig";
-
-// Trying
-//const Slider = () => {
-// let whirligig;
-// const next = () => whirligig.next();
-// const prev = () => whirligig.prev();
-//};
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -77,7 +69,7 @@ function App() {
               <i className="fa fa-bars"></i>
             </button>
             <Link className="brand" to="/">
-              Silo
+              SILO
             </Link>
           </div>
           <div>
@@ -160,7 +152,6 @@ function App() {
             )}
           </div>
         </header>
-
         <aside className={sidebarIsOpen ? "open" : ""}>
           <ul className="categories">
             <li>
@@ -191,7 +182,6 @@ function App() {
             )}
           </ul>
         </aside>
-
         <main>
           <div className="col-1 card card-body">
             <div className=" stretch">
@@ -338,7 +328,6 @@ function App() {
             path="/orderlist/seller"
             component={OrderListScreen}
           ></SellerRoute>
-
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
         <footer className="row center">
