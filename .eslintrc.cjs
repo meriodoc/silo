@@ -13,7 +13,9 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react"],
-  rules: {
-    "no-unused-vars": ["error", { argsIgnorePattern: "next" }],
+  rules: {},
+  engines: {
+    node: ">=14.17.5",
+    npm: ">=7.21.1",
   },
 };
