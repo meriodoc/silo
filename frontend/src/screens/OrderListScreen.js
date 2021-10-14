@@ -39,7 +39,7 @@ export default function OrderListScreen(props) {
   };
   return (
     <div>
-      <h1>Orders</h1>
+      <h1 className="heading-lists">ORDERS</h1>
       {loadingDelete && <LoadingBox></LoadingBox>}
       {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
       {loading ? (
@@ -76,7 +76,7 @@ export default function OrderListScreen(props) {
                   <td>
                     <button
                       type="button"
-                      className="small"
+                      className="small2"
                       onClick={() => {
                         props.history.push(`/order/${order._id}`);
                       }}
@@ -85,10 +85,10 @@ export default function OrderListScreen(props) {
                     </button>
                     <button
                       type="button"
-                      className="small"
+                      className="small2"
                       onClick={() => deleteHandler(order)}
                     >
-                      DELETE
+                      DELETE&nbsp;
                     </button>
                   </td>
                 </tr>

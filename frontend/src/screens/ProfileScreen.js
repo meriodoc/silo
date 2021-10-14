@@ -66,7 +66,7 @@ export default function ProfileScreen() {
     <div>
       <form className="form" onSubmit={submitHandler}>
         <div>
-          <h1>USER PROFILE</h1>
+          <h1 className="heading-lists">USER PROFILE</h1>
         </div>
         {loading ? (
           <LoadingBox></LoadingBox>
@@ -121,7 +121,7 @@ export default function ProfileScreen() {
             </div>
             {user.isSeller && (
               <>
-                <h2>SELLER</h2>
+                <h2 className="heading-lists">SELLER</h2>
                 <div>
                   <label htmlFor="sellerName">SELLER NAME</label>
                   <input

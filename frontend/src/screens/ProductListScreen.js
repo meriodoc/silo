@@ -75,10 +75,12 @@ export default function ProductListScreen(props) {
   //  {_.isEmpty(products, loading) ? (
   return (
     <div>
-      <div className="row">
-        <h1>Products</h1>
-        <button type="button" className="primary" onClick={createHandler}>
-          Create Product
+      <div className="heading-lists">
+        <h1 className=" col-custom heading-lists"> MY PRODUCTS</h1>
+      </div>
+      <div className="heading-button">
+        <button type="button" className="primary " onClick={createHandler}>
+          CREATE PRODUCT
         </button>
       </div>
       {loadingDelete && <LoadingBox></LoadingBox>}
@@ -95,7 +97,7 @@ export default function ProductListScreen(props) {
         <>
           <table className="table">
             <thead>
-              <tr>
+              <tr className="table-custom">
                 <th>ID</th>
                 <th>NAME</th>
                 <th>PRICE</th>
@@ -104,7 +106,7 @@ export default function ProductListScreen(props) {
                 <th>ACTIONS</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="table-custom">
               {products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
@@ -115,19 +117,19 @@ export default function ProductListScreen(props) {
                   <td>
                     <button
                       type="button"
-                      className="small"
+                      className="small2"
                       onClick={() =>
                         props.history.push(`/product/${product._id}/edit`)
                       }
                     >
-                      Edit
+                      CHANGE
                     </button>
                     <button
                       type="button"
-                      className="small"
+                      className="small2"
                       onClick={() => deleteHandler(product)}
                     >
-                      Delete
+                      DELETE&nbsp;
                     </button>
                   </td>
                 </tr>

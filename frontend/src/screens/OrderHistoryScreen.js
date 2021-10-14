@@ -32,7 +32,7 @@ export default function OrderHistoryScreen(props) {
   return (
     <div>
       <h1 className="heading-lists">
-        <strong>MY ORDERS</strong>
+        <strong>MY ORDER HISTORY</strong>
       </h1>
       {loading ? (
         <LoadingBox></LoadingBox>

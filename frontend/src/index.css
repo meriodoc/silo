@@ -386,8 +386,9 @@ img.logo {
 /* Table */
 
 .table {
-  width: 100%;
+  width: 99%;
   border-collapse: collapse;
+  margin-left: 1rem;
 }
 
 .table tbody tr:nth-of-type(odd) {
@@ -635,5 +636,25 @@ button.small2 {
 }
 .heading-lists {
   text-align: center;
-  font-size: 3rem;
+  font-size: 2rem;
+}
+.heading-button {
+  text-align: right;
+  font-size: 2rem;
+  padding: 1rem;
+}
+/*Occupy 1 of 4 - 1 make it shrinkable - 25rem = width of column */
+.col-custom {
+  flex: 1 1 25rem;
+  border: 0.1rem #c0c0c0 solid;
+  background-color: #f8f8f8;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.table-custom {
+  border: 0.1rem #c0c0c0 solid;
+  background-color: #f8f8f8;
+  border-radius: 0.5rem;
 }
