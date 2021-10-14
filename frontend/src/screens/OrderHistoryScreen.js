@@ -31,7 +31,9 @@ export default function OrderHistoryScreen(props) {
   // {!_.isEmpty(orderMineList) || _.isNil(orderMineList) || loading ?
   return (
     <div>
-      <h1>Order History</h1>
+      <h1 className="heading-lists">
+        <strong>MY ORDERS</strong>
+      </h1>
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (

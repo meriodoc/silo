@@ -193,8 +193,8 @@ function App() {
         </aside>
 
         <main>
-          <div className="col-1 card card-body ">
-            <div>
+          <div className="col-1 card card-body">
+            <div className=" stretch">
               <Link to="/">
                 {
                   <img

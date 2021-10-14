@@ -582,12 +582,11 @@ img.logo {
 }
 /* Arrows margin: auto;   */
 .arrow-left {
-  width: 4%;
+  width: 10%;
   margin: Left;
 }
 .second-menu {
-  width: 10%;
-  margin: Left;
+  width: 100%;
 }
 
 .bold-blue {
@@ -628,4 +627,13 @@ button.small2 {
 }
 .content-admin {
   color: #0078d7;
+}
+
+.stretch {
+  display: flex;
+  justify-content: space-between;
+}
+.heading-lists {
+  text-align: center;
+  font-size: 3rem;
 }
