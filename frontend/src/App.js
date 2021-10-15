@@ -208,9 +208,9 @@ function App() {
               <Link to="/">
                 {
                   <img
-                    className="second-menu"
-                    src="/images/icons/myMessages.png"
-                    alt="second menu"
+                    className="second-menu fa fa-support"
+                    src="/images/icons/secondBar/active/instantMessengerActive.png"
+                    alt="second menu Messenger"
                   ></img>
                 }
               </Link>
@@ -219,7 +219,7 @@ function App() {
                 {
                   <img
                     className="second-menu"
-                    src="/images/icons/myOrders.png"
+                    src="/images/icons/secondBar/active/mainCartActive.png"
                     alt="second menu"
                   ></img>
                 }

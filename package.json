@@ -2,11 +2,11 @@
   "name": "silo",
   "type": "module",
   "version": "1.0.0",
-  "description": "Silo E-commerce",
+  "description": "Silo Ecommerce",
   "main": "index.js",
   "scripts": {
     "build": "cd frontend && npm install && npm run build",
-    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
+    "start": "nodemon --watch backend --exec node backend/server.js"
   },
   "repository": {
     "type": "git",
