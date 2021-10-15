@@ -14,8 +14,4 @@ module.exports = {
   },
   plugins: ["react"],
   rules: {},
-  engines: {
-    node: ">=14.17.5",
-    npm: ">=7.21.1",
-  },
 };
