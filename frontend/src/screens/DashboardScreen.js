@@ -52,7 +52,7 @@ export default function DashboardScreen() {
                 </span>
               </div>
               <div className="summary-body">
-                R
+                R{" "}
                 {summary.orders[0]
                   ? summary.orders[0].totalSales.toFixed(2)
                   : 0}
@@ -61,7 +61,7 @@ export default function DashboardScreen() {
           </ul>
           <div>
             <div>
-              <h2>Sales</h2>
+              <h2>SALES</h2>
               {summary.dailyOrders.length === 0 ? (
                 <MessageBox>No Sales</MessageBox>
               ) : (
@@ -79,7 +79,7 @@ export default function DashboardScreen() {
             </div>
           </div>
           <div>
-            <h2>Categories</h2>
+            <h2>CATEGORIES</h2>
             {summary.productCategories.length === 0 ? (
               <MessageBox>No Categories</MessageBox>
             ) : (
