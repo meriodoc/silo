@@ -32,6 +32,8 @@ import MapScreen from "./screens/MapScreen";
 import DashboardScreen from "./screens/DashboardScreen";
 import SupportScreen from "./screens/SupportScreen";
 import ChatBox from "./components/ChatBox";
+import "./index.css";
+//import PosToggle from "./components/PosToggle";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -189,8 +191,8 @@ function App() {
                 {
                   <img
                     className="second-menu"
-                    src="/images/icons/pos-inactive.png"
-                    alt="second menu"
+                    src="/images/icons/secondBar/inactive/posInactive.png"
+                    alt="POS Inactive"
                   ></img>
                 }
               </Link>
@@ -199,7 +201,7 @@ function App() {
                 {
                   <img
                     className="second-menu"
-                    src="/images/icons/sendAndReceive.png"
+                    src="/images/icons/secondBar/inactive/logisticsInactive.png"
                     alt="second menu"
                   ></img>
                 }
@@ -209,8 +211,11 @@ function App() {
                 {
                   <img
                     className="second-menu fa fa-support"
-                    src="/images/icons/secondBar/active/instantMessengerActive.png"
+                    src="/images/icons/secondBar/inactive/instantMessengerInactive.png"
                     alt="second menu Messenger"
+                    onClick={
+                      "this.src=/images/icons/secondBar/active/instantMessengerActive.png"
+                    }
                   ></img>
                 }
               </Link>
@@ -219,7 +224,7 @@ function App() {
                 {
                   <img
                     className="second-menu"
-                    src="/images/icons/secondBar/active/mainCartActive.png"
+                    src="/images/icons/secondBar/inactive/mainCartInactive.png"
                     alt="second menu"
                   ></img>
                 }
@@ -229,7 +234,7 @@ function App() {
                 {
                   <img
                     className="second-menu"
-                    src="/images/icons/mySuppliers.png"
+                    src="/images/icons/secondBar/inactive/supplierInactive.png"
                     alt="second menu"
                   ></img>
                 }

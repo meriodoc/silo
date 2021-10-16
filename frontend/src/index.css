@@ -658,3 +658,13 @@ button.small2 {
   background-color: #f8f8f8;
   border-radius: 0.5rem;
 }
+
+.secondMenuPos {
+  background-image: url ("/images/icons/secondBar/inactive/posInactive.png");
+}
+.secondMenuPos:active {
+  background: url ("/images/icons/secondBar/active/posActive.png");
+}
+.secondMenuPos:hover {
+  background: url ("/images/icons/secondBar/active/posActive.png");
+}
