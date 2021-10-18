@@ -34,58 +34,6 @@ import SupportScreen from "./screens/SupportScreen";
 import ChatBox from "./components/ChatBox";
 import "./index.css";
 
-// const secondMenuImages = [
-//   {
-//     id: "1",
-//     key: "1",
-//     title: "posActive",
-//     text: "Point of sales active",
-//     img: "./assets/posActive.png",
-//   },
-//   {
-//     id: "2",
-//     key: "2",
-//     title: "logisticsActive",
-//     text: "Logistics active",
-//     img: "./assets/logisticsActive.png",
-//   },
-//   {
-//     id: "3",
-//     key: "3",
-//     title: "instantMessengerActive",
-//     text: "Instant messenger active",
-//     img: "./assets/instantMessengerActive.png",
-//   },
-//   {
-//     id: "4",
-//     key: "4",
-//     title: "cartActive",
-//     text: "Cart active",
-//     img: "./assets/cartActive.png",
-//   },
-//   {
-//     id: "5",
-//     key: "5",
-//     title: "supplierActive",
-//     text: "Supplier active",
-//     img: "./assets/supplierActive.png",
-//   },
-// ];
-
-// let secondMenuImages = {
-
-//   posActive: require("./assets/posActive.png"),
-//   posInactive: require("./assets/posInactive.png"),
-//   logisticsActive: require("./assets/logisticsActive.png"),
-//   logisticsInactive: require("./assets/logisticsInactive.png"),
-//   instantMessengerActive: require("./assets/instantMessengerActive.png"),
-//   instantMessengerInactive: require("./assets/instantMessengerInactive.png"),
-//   cartActive: require("./assets/cartActive.png"),
-//   cartInactive: require("./assets/cartInactive.png"),
-//   supplierActive: require("./assets/supplierActive.png"),
-//   supplierInactive: require("./assets/supplierInactive.png"),
-// };
-
 function App() {
   const cart = useSelector((state) => state.cart);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
@@ -141,35 +89,10 @@ function App() {
     activeObject: null,
   });
 
-  //appState.objects.map((elements, index) => {
-  //console.log(elements.srcA);
-  //});
-
-  // function Toggle active
-  // To make sure I don't overwrite what is going on in this.state.
-  // ...appState will make a copy of it = spreading the object out
-  //
   function toggleActive(index) {
     changeState({ ...appState, activeObject: index });
   }
   console.log(appState.activeObject);
-  // Function toggle styles
-
-  /*function toggleActiveStyles(index) {
-    if (appState.objects[0] === appState.activeObject) {
-      return "box posActive";
-    } else if (appState.objects[1] === appState.activeObject) {
-      return "box logisticsActive";
-    } else if (appState.objects[2] === appState.activeObject) {
-      return "box instantMessengerActive";
-    } else if (appState.objects[3] === appState.activeObject) {
-      return "box cartActive";
-    } else if (appState.objects[4] === appState.activeObject) {
-      return "box supplierActive";
-    } else {
-      return "";
-    }
-  }*/
 
   // categories
   useEffect(() => {
