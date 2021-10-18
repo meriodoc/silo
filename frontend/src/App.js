@@ -33,7 +33,58 @@ import DashboardScreen from "./screens/DashboardScreen";
 import SupportScreen from "./screens/SupportScreen";
 import ChatBox from "./components/ChatBox";
 import "./index.css";
-//import PosToggle from "./components/PosToggle";
+
+// const secondMenuImages = [
+//   {
+//     id: "1",
+//     key: "1",
+//     title: "posActive",
+//     text: "Point of sales active",
+//     img: "./assets/posActive.png",
+//   },
+//   {
+//     id: "2",
+//     key: "2",
+//     title: "logisticsActive",
+//     text: "Logistics active",
+//     img: "./assets/logisticsActive.png",
+//   },
+//   {
+//     id: "3",
+//     key: "3",
+//     title: "instantMessengerActive",
+//     text: "Instant messenger active",
+//     img: "./assets/instantMessengerActive.png",
+//   },
+//   {
+//     id: "4",
+//     key: "4",
+//     title: "cartActive",
+//     text: "Cart active",
+//     img: "./assets/cartActive.png",
+//   },
+//   {
+//     id: "5",
+//     key: "5",
+//     title: "supplierActive",
+//     text: "Supplier active",
+//     img: "./assets/supplierActive.png",
+//   },
+// ];
+
+// let secondMenuImages = {
+
+//   posActive: require("./assets/posActive.png"),
+//   posInactive: require("./assets/posInactive.png"),
+//   logisticsActive: require("./assets/logisticsActive.png"),
+//   logisticsInactive: require("./assets/logisticsInactive.png"),
+//   instantMessengerActive: require("./assets/instantMessengerActive.png"),
+//   instantMessengerInactive: require("./assets/instantMessengerInactive.png"),
+//   cartActive: require("./assets/cartActive.png"),
+//   cartInactive: require("./assets/cartInactive.png"),
+//   supplierActive: require("./assets/supplierActive.png"),
+//   supplierInactive: require("./assets/supplierInactive.png"),
+// };
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -52,6 +103,73 @@ function App() {
     error: errorCategories,
     categories,
   } = productCategoryList;
+
+  const objects = [
+    {
+      srcA: "/images/icons/secondBar/active/posActive.png",
+      srcI: "/images/icons/secondBar/inactive/posInactive.png",
+      link: "/",
+    },
+
+    {
+      srcA: "/images/icons/secondBar/active/logisticsActive.png",
+      srcI: "/images/icons/secondBar/inactive/logisticsInactive.png",
+      link: "/",
+    },
+
+    {
+      srcA: "/images/icons/secondBar/active/instantMessengerActive.png",
+      srcI: "/images/icons/secondBar/inactive/instantMessengerInactive.png",
+      link: "/",
+    },
+
+    {
+      srcA: "/images/icons/secondBar/active/mainCartActive.png",
+      srcI: "/images/icons/secondBar/inactive/mainCartInactive.png",
+      link: "/orderhistory",
+    },
+
+    {
+      srcA: "/images/icons/secondBar/active/supplierActive.png",
+      srcI: "/images/icons/secondBar/inactive/supplierInactive.png",
+      link: "/",
+    },
+  ];
+
+  //Toggle active div
+  const [appState, changeState] = useState({
+    activeObject: null,
+  });
+
+  //appState.objects.map((elements, index) => {
+  //console.log(elements.srcA);
+  //});
+
+  // function Toggle active
+  // To make sure I don't overwrite what is going on in this.state.
+  // ...appState will make a copy of it = spreading the object out
+  //
+  function toggleActive(index) {
+    changeState({ ...appState, activeObject: index });
+  }
+  console.log(appState.activeObject);
+  // Function toggle styles
+
+  /*function toggleActiveStyles(index) {
+    if (appState.objects[0] === appState.activeObject) {
+      return "box posActive";
+    } else if (appState.objects[1] === appState.activeObject) {
+      return "box logisticsActive";
+    } else if (appState.objects[2] === appState.activeObject) {
+      return "box instantMessengerActive";
+    } else if (appState.objects[3] === appState.activeObject) {
+      return "box cartActive";
+    } else if (appState.objects[4] === appState.activeObject) {
+      return "box supplierActive";
+    } else {
+      return "";
+    }
+  }*/
 
   // categories
   useEffect(() => {
@@ -186,59 +304,30 @@ function App() {
         </aside>
         <main>
           <div className="col-1 card card-body">
-            <div className=" stretch">
-              <Link to="/">
-                {
-                  <img
-                    className="second-menu"
-                    src="/images/icons/secondBar/inactive/posInactive.png"
-                    alt="POS Inactive"
-                  ></img>
-                }
-              </Link>
-              &nbsp;
-              <Link to="/">
-                {
-                  <img
-                    className="second-menu"
-                    src="/images/icons/secondBar/inactive/logisticsInactive.png"
-                    alt="second menu"
-                  ></img>
-                }
-              </Link>
-              &nbsp;
-              <Link to="/">
-                {
-                  <img
-                    className="second-menu fa fa-support"
-                    src="/images/icons/secondBar/inactive/instantMessengerInactive.png"
-                    alt="second menu Messenger"
-                    onClick={
-                      "this.src=/images/icons/secondBar/active/instantMessengerActive.png"
+            <div className=" ">
+              <div className="toggle">
+                {objects.map((elements, index) => (
+                  <Link
+                    className="menulink"
+                    to={elements.link}
+                    onClick={() => {
+                      toggleActive(index);
+                    }}
+                  >
+                    {
+                      <img
+                        className="second-menu"
+                        src={
+                          index === appState.activeObject
+                            ? elements.srcA
+                            : elements.srcI
+                        }
+                        alt="POS Inactive"
+                      ></img>
                     }
-                  ></img>
-                }
-              </Link>
-              &nbsp;
-              <Link to="/orderhistory">
-                {
-                  <img
-                    className="second-menu"
-                    src="/images/icons/secondBar/inactive/mainCartInactive.png"
-                    alt="second menu"
-                  ></img>
-                }
-              </Link>
-              &nbsp;
-              <Link to="/">
-                {
-                  <img
-                    className="second-menu"
-                    src="/images/icons/secondBar/inactive/supplierInactive.png"
-                    alt="second menu"
-                  ></img>
-                }
-              </Link>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
           <div className="col-1 card card-body ">

@@ -668,3 +668,76 @@ button.small2 {
 .secondMenuPos:hover {
   background: url ("/images/icons/secondBar/active/posActive.png");
 }
+
+/*second Menu*/
+
+.menulink {
+  padding: 1rem;
+}
+.toggle {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  transition: background-color 0.1s ease-in-out;
+}
+.inactive {
+  background-image: url("./assets/posInactive.png");
+  background-repeat: no-repeat;
+}
+
+.active {
+  background-image: url("./assets/posActive.png");
+  background-repeat: no-repeat;
+}
+
+.posActive {
+  background-image: url("./assets/posActive.png");
+  background-repeat: no-repeat;
+}
+.posInactive {
+  background-image: url("./assets/posInactive.png");
+  background-repeat: no-repeat;
+}
+
+.logisticsActive {
+  background-image: url("./assets/logisticsActive.png");
+  background-repeat: no-repeat;
+}
+.logisticsInactive {
+  background-image: url("./assets/logisticsInactive.png");
+  background-repeat: no-repeat;
+}
+
+.instantMessengerActive {
+  background-image: url("./assets/instantMessengerActive.png");
+  background-repeat: no-repeat;
+}
+.instantMessengerInactive {
+  background-image: url("./assets/instantMessengerInactive.png");
+  background-repeat: no-repeat;
+}
+
+.cartActive {
+  background-image: url("./assets/cartActive.png");
+  background-repeat: no-repeat;
+}
+.cartInactive {
+  background-image: url("./assets/cartInactive.png");
+  background-repeat: no-repeat;
+}
+.supplierActive {
+  background-image: url("./assets/supplierActive.png");
+  background-repeat: no-repeat;
+}
+.supplierInactive {
+  background-image: url("./assets/supplierInactive.png");
+  background-repeat: no-repeat;
+}
