@@ -586,9 +586,6 @@ img.logo {
   width: 10%;
   margin: Left;
 }
-.second-menu {
-  width: 100%;
-}
 
 .bold-blue {
   font-weight: bold;
@@ -659,26 +656,18 @@ button.small2 {
   border-radius: 0.5rem;
 }
 
-.secondMenuPos {
-  background-image: url ("/images/icons/secondBar/inactive/posInactive.png");
-}
-.secondMenuPos:active {
-  background: url ("/images/icons/secondBar/active/posActive.png");
-}
-.secondMenuPos:hover {
-  background: url ("/images/icons/secondBar/active/posActive.png");
-}
-
 /*second Menu*/
-
+.second-menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 .menulink {
   padding: 1rem;
 }
 .toggle {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: row wrap;
+  justify-content: space-between;
 }
 
 .box {

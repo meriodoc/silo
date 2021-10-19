@@ -227,7 +227,7 @@ function App() {
         </aside>
         <main>
           <div className="col-1 card card-body">
-            <div className=" ">
+            <div className="col-custom">
               <div className="toggle">
                 {objects.map((elements, index) => (
                   <Link
@@ -245,7 +245,7 @@ function App() {
                             ? elements.srcA
                             : elements.srcI
                         }
-                        alt="POS Inactive"
+                        alt="Second Menu elements"
                       ></img>
                     }
                   </Link>
