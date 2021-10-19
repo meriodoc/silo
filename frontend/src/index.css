@@ -675,7 +675,6 @@ button.small2 {
   padding: 1rem;
 }
 .toggle {
-  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -687,15 +686,6 @@ button.small2 {
   height: 200px;
   margin: 10px;
   transition: background-color 0.1s ease-in-out;
-}
-.inactive {
-  background-image: url("./assets/posInactive.png");
-  background-repeat: no-repeat;
-}
-
-.active {
-  background-image: url("./assets/posActive.png");
-  background-repeat: no-repeat;
 }
 
 .posActive {

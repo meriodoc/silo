@@ -56,7 +56,7 @@ function App() {
     {
       srcA: "/images/icons/secondBar/active/posActive.png",
       srcI: "/images/icons/secondBar/inactive/posInactive.png",
-      link: "/",
+      link: "/productlist",
     },
 
     {
