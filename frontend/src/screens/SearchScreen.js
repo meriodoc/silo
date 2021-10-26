@@ -64,7 +64,7 @@ export default function SearchScreen(props) {
           <div>{products.length} RESULTS</div>
         )}
         <div>
-          SORT BY {""}
+          SORT BY{" "}
           <select
             value={order}
             onChange={(e) => {

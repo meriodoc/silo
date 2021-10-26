@@ -68,7 +68,7 @@ function App() {
     {
       srcA: "/images/icons/secondBar/active/instantMessengerActive.png",
       srcI: "/images/icons/secondBar/inactive/instantMessengerInactive.png",
-      link: "/",
+      link: "/support",
     },
 
     {
