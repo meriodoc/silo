@@ -11,7 +11,7 @@ import uploadRouter from "./routers/uploadRouter.js";
 
 dotenv.config();
 
-let app = express();
+const app = express();
 // Here i need to parse the body of the http request to avoid the error in Postman FOR signin
 // by running this I run new middleware by parsing data in the body of the request to json
 app.use(express.json());
@@ -47,12 +47,13 @@ app.get("*", (req, res) =>
 //   res.send("Server is ready");
 // });
 //let unused = require("unparam");
-
+// WERNER
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
 const port = process.env.PORT || 5000;
+
 const httpServer = http.Server(app);
 const io = new Server(httpServer, { cors: { origin: "*" } });
 const users = [];

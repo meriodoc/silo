@@ -2,6 +2,8 @@ import React from "react";
 
 export default function Rating(props) {
   const { rating, numReviews, caption } = props;
+
+  // If rating >=1    ? render  : otherwise rating >= 0.5 : otherwise 0
   return (
     <div className="rating">
       <span>

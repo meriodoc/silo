@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Rating from "./Rating";
+
 // seller seller = first one points to product model(returns complete model) - second seller point to the user model (returns name of the seller:{}) part of the model
 export default function Product(props) {
+  // Fetch products from props
   const { product } = props;
+
+  // Usage of <Rating> component lines 20 to 23
   return (
     <div key={product._id} className="card">
       <Link to={`/product/${product._id}`}>
