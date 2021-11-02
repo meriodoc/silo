@@ -4,12 +4,17 @@ import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../actions/cartActions";
 import MessageBox from "../components/MessageBox";
 
+// Check if productId exists in params
+// Then call ADD_TO_CART action to add this product to the cart
+
 export default function CartScreen(props) {
   const productId = props.match.params.id;
   const qty = props.location.search
     ? Number(props.location.search.split("=")[1])
     : 1;
+  // to get cart from redux store use useSelector
   const cart = useSelector((state) => state.cart);
+  // Fetch cartItems from cart
   const { cartItems, error } = cart;
   const dispatch = useDispatch();
   useEffect(() => {
@@ -25,7 +30,7 @@ export default function CartScreen(props) {
   const checkoutHandler = () => {
     props.history.push("/signin?redirect=shipping");
   };
-
+  // row top = 2 columns and all columns should stick to top
   return (
     <div className="row top">
       <div className="col-2">
@@ -87,7 +92,7 @@ export default function CartScreen(props) {
           <ul>
             <li>
               <h2>
-                SUBTOTAL ({cartItems.reduce((a, c) => a + c.qty, 0)} items): R
+                SUBTOTAL ({cartItems.reduce((a, c) => a + c.qty, 0)} items) : R
                 {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
               </h2>
             </li>

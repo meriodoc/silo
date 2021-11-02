@@ -60,6 +60,9 @@ export let listProductCategories = () => async (dispatch) => {
     dispatch({ type: PRODUCT_CATEGORY_LIST_FAIL, payload: error.message });
   }
 };
+
+// One products info when I click on it ... productId
+// Use back tic literals / api and use a template ie, ${productID}
 //* In this function i will get a product by it's id from backend and update redux store based on it *//
 
 export let detailsProduct = (productId) => async (dispatch) => {

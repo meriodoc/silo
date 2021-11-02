@@ -27,6 +27,7 @@ const {
 } = require("../constants/productConstants");
 
 //* Use an empty array so that it isn't null = products *//
+// set loading to true to prevent any errors as a sort of default when clikcing on back and then on product again
 export let productListReducer = (
   state = { loading: true, products: [] },
   action

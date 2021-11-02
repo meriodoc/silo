@@ -42,6 +42,7 @@ const initialState = {
       ? JSON.parse(localStorage.getItem("userInfo"))
       : null,
   },
+  // Same value I used in cartActions.js === cartItems
   cart: {
     cartItems: localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
